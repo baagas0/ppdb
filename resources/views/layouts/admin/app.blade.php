@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('adm/images/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(fSet('favicon')->file) }}">
     <title>{{ config('app.name') }}</title>
     <!-- Custom CSS -->
     <link href="{{ asset('adm/dist/css/style.min.css') }}" rel="stylesheet">
@@ -80,8 +80,7 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer text-center">
-            All Rights Reserved by AdminBite admin. Designed and Developed by
-            <a href="https://wrappixel.com">WrapPixel</a>.
+            All Rights Reserved & Development by isDitya
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->
@@ -246,7 +245,7 @@
     <script src="{{ asset('adm/extra-libs/c3/d3.min.js') }}"></script>
     <script src="{{ asset('adm/extra-libs/c3/c3.min.js') }}"></script>
     <script src="{{ asset('adm/dist/js/pages/dashboards/dashboard3.js') }}"></script>
-
+    <script src="{{ asset('adm/dist/js/pages/dashboards/dashboard1.js') }}"></script>
 </body>
 
 </html>

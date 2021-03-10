@@ -20,6 +20,13 @@ class SettingSeeder extends Seeder
     	]);
 
         Setting::create([
+            'slug'      => 'bg-color-form',
+            'title'     => '',
+            'content'   => ' background: rgb(80,186,2);background: radial-gradient(circle, rgba(80,186,2,1) 0%, rgba(9,121,14,1) 82%); /* Note: Get Gradient Code From https://cssgradient.io/ */',
+            'file'      => '',
+        ]);
+
+        Setting::create([
             'slug'      => 'custom-alert',
             'is_active' => 1,
             'title'     => '',

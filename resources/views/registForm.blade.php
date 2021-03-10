@@ -9,7 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 
 	<!-- Identyty Page -->
-	<link href="{{ asset('lp/images/favicon/favicon.png') }}" rel="icon">
+	<link href="{{ asset(fSet('favicon')->file) }}" rel="icon">
 	<title>{{ config('app.name') }}</title>
 
 	<!-- Bootstrap CSS -->
@@ -55,11 +55,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card text-white bg-primary mb-3 mt-5" style="border: 2px solid #f9fafc;border-radius: 50px">
-					<div class="card-header" style="background: rgb(239,68,68);
-					background: linear-gradient(90deg, rgba(239,68,68,1) 35%, rgba(245,158,11,1) 100%);">
+					<div class="card-header" style="{!! fSet('bg-color-form')->content !!}">
 					<div class="row" style="padding: 30px 25px 30px 25px">
 						<div class="col-md-2 media">
-							<img src="https://ppdb.smkwikrama.sch.id/img/wk.png" class="img-responsive align-self-center float-left" alt="Logo" style="width: 100px;height: auto;">
+							<img src="{{ asset(fSet('favicon')->file) }}" class="img-responsive align-self-center float-left" alt="Logo" style="width: 100px;height: auto;">
 						</div>
 						<div class="col-md-9">
 							<h1 class="bold">Form Pendaftaran Jalur Regular</h1>

@@ -117,3 +117,21 @@ if (!function_exists('fSet')) {
     }
 
 }
+
+if (!function_exists('percent')) {
+
+    /**
+     * description
+     *
+     * @param
+     * @return
+     */
+    function percent($value, $amount)
+    {
+        $data = ($value / $amount) * 100;
+
+
+        return $data;
+    }
+
+}

@@ -28,7 +28,7 @@
 					@if(!empty($data->content))
 					<div class="form-group">
 						<label for="content">Content</label>
-						<textarea class="form-control summernote" rows="5" name="content">{{ $data->content }}</textarea>
+						<textarea class="form-control" rows="5" name="content">{{ $data->content }}</textarea>
 					</div>
 					@endif
 					@if(!empty($data->value))

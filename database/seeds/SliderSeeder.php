@@ -17,7 +17,7 @@ class SliderSeeder extends Seeder
     		'title' 		=> 'MAN 2 PATI Bersahaja',
     		'description'   => 'Kuota peserta didik kelas Reguler ada 280 (Apabila Kuota Sudah Terpenuhi Maka Pendaftaran Akan Di Tutup) untuk tahun pelajaran 2021-2022',
     		'linkTitle'		=> 'Pendaftaran',
-    		'is_link' 		=> '/registration'
+    		'is_link' 		=> 'registration'
     	]);
     	
     	Slider::create([
@@ -25,7 +25,7 @@ class SliderSeeder extends Seeder
     		'title' 		=> 'PPDB MAN 2 PATI',
     		'description'   => 'Kuota peserta didik kelas Reguler ada 280 (Apabila Kuota Sudah Terpenuhi Maka Pendaftaran Akan Di Tutup) untuk tahun pelajaran 2021-2022',
     		'linkTitle'		=> 'Pendaftaran',
-    		'is_link' 		=> '/registration'
+    		'is_link' 		=> 'registration'
     	]);
 
     }
