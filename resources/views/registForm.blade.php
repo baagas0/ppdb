@@ -71,18 +71,7 @@
 					<div class="container">
 						<div class="container">
 							<!-- <div class="container"> -->
-								@if ($message = Session::get('success'))
-								<div class="alert alert-primary alert-block">
-									<button type="button" class="close" data-dismiss="alert">×</button>	
-									<strong>{{ $message }}</strong>
-								</div>
-								@endif
-								@if ($message = Session::get('custom'))
-								<div class="alert alert-warning alert-block">
-									<button type="button" class="close" data-dismiss="alert">×</button>	
-									<strong>Custom Message</strong>
-								</div>
-								@endif
+								@include('layouts.alert')
 
 								<form method="POST" action="{{ route('..save.registration') }}">
 									@csrf
@@ -317,7 +306,7 @@
 										<div class="col-xl-12 col-md-12">
 											<div class="form-group terms" style="padding-top: 30px">
 												<label class="container_check">Saya benar benar menginput nilai sesuai dengan raport saya
-													<input type="checkbox" name="terms" value="Yes" class="required">
+													<input type="checkbox" name="terms">
 													<span class="checkmark"></span>
 												</label>
 											</div>

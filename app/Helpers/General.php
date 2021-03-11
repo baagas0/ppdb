@@ -55,7 +55,7 @@ if (!function_exists('routeController')) {
     }
 }
 
-if (!function_exists('Alertasd')) {
+if (!function_exists('Alert')) {
 
     /**
      * description
