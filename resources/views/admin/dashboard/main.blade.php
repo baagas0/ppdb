@@ -119,7 +119,7 @@
 						<h3 class="font-light text-white">{{ $rThisMonth }}</h3>
 					</div>
 					<div class="col-8 text-right">
-						<div class="rThisMonth"></div>
+						<div class="cThisMonth"></div>
 					</div>
 				</div>
 			</div>
@@ -166,7 +166,7 @@
 	$(function () {
     "use strict";
 		var month = {{ json_encode($cMonth) }};
-		$('.rThisMonth').sparkline(
+		$('.cThisMonth').sparkline(
 			month,
 			{
 				type: 'line',
@@ -202,10 +202,6 @@
 			xkey: 'monthName',
 			parseTime: false,
 			ykeys: ['amount'],
-			// xLabelFormat: function (x) {
-			// 	var index = parseInt(x.src.month);
-			// 	return monthNames[index];
-			// },
 			xLabels: "monthName",
 			labels: ['Jumlah', 'Bulan'],
 

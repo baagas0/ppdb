@@ -5,7 +5,14 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<meta name="description" content="Smart Data  IT Solutions &  Services Template">
+
+	<meta property="og:url"                content="http://demo-web.my.id/ppdb" />
+	<meta property="og:type"               content="platform" />
+	<meta property="og:title"              content="{{ fSet('title')->title }}" />
+	<meta property="og:description"        content="PPDB Online {{ fSet('schoolName')->title }} | Build by DityaDev" />
+	<meta property="og:image"              content="{{ asset('lp/images/lp.png') }}" />
+
+	<meta name="description" content="PPDB Online {{ fSet('schoolName')->title }}">
 	<link href="{{ asset(fSet('favicon')->file) }}" rel="icon">
 	<title>{{ fSet('title')->title }}</title>
 
