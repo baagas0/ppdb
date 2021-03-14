@@ -34,6 +34,10 @@
 												<i class="ti-eye"></i> Open
 											</a>
 
+											<a class="dropdown-item" href="{{ route('admin.registrant.card', $item->id) }}">
+												<i class="ti-layout-slider-alt "></i> Download Card
+											</a>
+
 											<a class="dropdown-item" href="{{ route('admin.registrant.detail', $item->id) }}">
 												<i class="ti-pencil-alt"></i> Edit
 											</a>

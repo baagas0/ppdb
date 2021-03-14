@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Registrant;
 use App\Slider;
-
+use PDF;
 
 class FrontController extends Controller
 {
@@ -16,6 +16,15 @@ class FrontController extends Controller
 
 	public function getRegistration() {
 		return view('registForm');
+	}
+
+	public function getDownloadCard($id) {
+		$data['data'] = Registrant::findOrFail($id);
+        // return view('card', $data);
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('card', $data);
+        $name = 'card-'.$data['data']->id_registrant.'.pdf';
+        $path = 'regist/card/';
+        return $pdf->setWarnings(false)->stream($name);
 	}
 
 	public function postSaveRegistration(Request $request) {
@@ -34,7 +43,7 @@ class FrontController extends Controller
 		$amount_ipa	= $request->ipa_sm3 + $request->ipa_sm4 + $request->ipa_sm5;
 		$average_ipa	= $amount_ipa / 3;
 		if (config('app.debug') == false) {
-			Registrant::create([
+			$registrant = Registrant::create([
 				'name'			=> $request->name ,
 				'place_birth'	=> $request->place_birth ,
 				'date_birth'	=> $request->date_birth ,
@@ -64,7 +73,7 @@ class FrontController extends Controller
 				'average_ipa'	=> $average_ipa ,
 			]);
 		}else {
-			Registrant::create([
+			$registrant = Registrant::create([
 				'name'			=> 'Bagas Trying Student',
 				'place_birth'	=> 'Jepara',
 				'date_birth'	=> date('Y-m-d'),
@@ -95,6 +104,8 @@ class FrontController extends Controller
 			]);
 		}
 
-		return redirect()->route('..registration')->with(['success' => 'Anda Berhasil mendaftar PPDB di Man 2 Pati lewat jalur regular', 'custom' => 'Anda Berhasil mendaftar PPDB di Man 2 Pati lewat jalur regular']);
+		
+
+		return redirect()->route('..registration')->with(['success' => 'Anda Berhasil mendaftar PPDB di Man 2 Pati lewat jalur regular', 'custom' => 'Download kartu peserta anda di <a href="'.route("..download.card", $registrant->id).'">Klik Sini</a>']);
 	}
 }

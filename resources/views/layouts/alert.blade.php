@@ -19,7 +19,7 @@
         @if ($message = Session::get('custom'))
         <div class="alert alert-warning alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button> 
-            <strong>{{ $message }}</strong>
+            <strong>{!! $message !!}</strong>
         </div>
         @endif
     </div>

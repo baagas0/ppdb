@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Registrant;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\RegistrantsExport;
+use PDF;
 
 class RegistrantController extends Controller
 {
@@ -37,7 +38,18 @@ class RegistrantController extends Controller
         return redirect()->route('admin.registrant.detail', $id)->with(Alert('success', 'Update'));
     }
 
+    public function getCard($id){
+        $data['data'] = Registrant::findOrFail($id);
+        // return view('card', $data);
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('card', $data);
+        $name = 'card-'.$data['data']->id_registrant.'.pdf';
+        $path = 'regist/card/';
+        $pdf->setWarnings(false)->save($path.$name);
+
+        return redirect()->route('admin.registrant');
+    }
+
     public function getExportExcel() {
-    	return Excel::download(new RegistrantsExport, 'Registrants.xlsx');
+    	return Excel::download(new RegistrantsExport, 'Registrants '.date('d F Y').'.xlsx');
     }
 }
