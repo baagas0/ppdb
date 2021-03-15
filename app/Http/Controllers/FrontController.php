@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Registrant;
+use Carbon\Carbon;
 use App\Slider;
 use PDF;
 
@@ -27,6 +28,11 @@ class FrontController extends Controller
         return $pdf->setWarnings(false)->stream($name);
 	}
 
+	public function getAge(Request $request) {
+		$age = Carbon::parse($request->get('date_birth'))->diff(\Carbon\Carbon::now())->format('%y');
+		return $age;
+	}
+
 	public function postSaveRegistration(Request $request) {
 		if ($request->has('terms') == false) {
 			return redirect()->route('..registration')->with('danger', 'Anda harus mencentang konfirmasi bahwa anda benar benar menginput nilai sesuai dengan raport saya');
@@ -46,7 +52,7 @@ class FrontController extends Controller
 			$registrant = Registrant::create([
 				'name'			=> $request->name ,
 				'place_birth'	=> $request->place_birth ,
-				'date_birth'	=> $request->date_birth ,
+				'date_birth'	=> Carbon::parse($request->date_birth)->format('Y-m-d') ,
 				'gender'		=> $request->gender ,
 				'region'		=> $request->region ,
 				'phone'			=> '62'.$request->phone ,
