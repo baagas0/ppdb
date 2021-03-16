@@ -48,7 +48,7 @@ class FrontController extends Controller
 
 		$amount_ipa	= $request->ipa_sm3 + $request->ipa_sm4 + $request->ipa_sm5;
 		$average_ipa	= $amount_ipa / 3;
-		if (config('app.debug') == false) {
+		// if (config('app.debug') == false) {
 			$registrant = Registrant::create([
 				'name'			=> $request->name ,
 				'place_birth'	=> $request->place_birth ,
@@ -78,37 +78,37 @@ class FrontController extends Controller
 				'ipa_sm5'		=> $request->ipa_sm5 ,
 				'average_ipa'	=> $average_ipa ,
 			]);
-		}else {
-			$registrant = Registrant::create([
-				'name'			=> 'Bagas Trying Student',
-				'place_birth'	=> 'Jepara',
-				'date_birth'	=> date('Y-m-d'),
-				'gender'		=> 'L',
-				'region'		=> 'islam',
-				'phone'			=> '089506373551',
-				'parent_name'	=> 'my Parent',
-				'parent_phone'	=> 'my Parent Phone',
-				'school_origin'	=> 'SMP 1 Donorojo',
-				'adress'		=> 'jl. benteng portugis',
-				'majors'		=> 'IPS',
-				'bing_sm3'		=> '56',
-				'bing_sm4'		=> '57',
-				'bing_sm5'		=> '58',
-				'average_bing'	=> '59',
-				'mat_sm3'		=> '56',
-				'mat_sm4'		=> '57',
-				'mat_sm5'		=> '58',
-				'average_mat'	=> '59',
-				'ips_sm3'		=> '56',
-				'ips_sm4'		=> '57',
-				'ips_sm5'		=> '58',
-				'average_ips'	=> '59',
-				'ipa_sm3'		=> '56',
-				'ipa_sm4'		=> '57',
-				'ipa_sm5'		=> '58',
-				'average_ipa'	=> '59',
-			]);
-		}
+		// }else {
+		// 	$registrant = Registrant::create([
+		// 		'name'			=> 'Bagas Trying Student',
+		// 		'place_birth'	=> 'Jepara',
+		// 		'date_birth'	=> date('Y-m-d'),
+		// 		'gender'		=> 'L',
+		// 		'region'		=> 'islam',
+		// 		'phone'			=> '089506373551',
+		// 		'parent_name'	=> 'my Parent',
+		// 		'parent_phone'	=> 'my Parent Phone',
+		// 		'school_origin'	=> 'SMP 1 Donorojo',
+		// 		'adress'		=> 'jl. benteng portugis',
+		// 		'majors'		=> 'IPS',
+		// 		'bing_sm3'		=> '56',
+		// 		'bing_sm4'		=> '57',
+		// 		'bing_sm5'		=> '58',
+		// 		'average_bing'	=> '59',
+		// 		'mat_sm3'		=> '56',
+		// 		'mat_sm4'		=> '57',
+		// 		'mat_sm5'		=> '58',
+		// 		'average_mat'	=> '59',
+		// 		'ips_sm3'		=> '56',
+		// 		'ips_sm4'		=> '57',
+		// 		'ips_sm5'		=> '58',
+		// 		'average_ips'	=> '59',
+		// 		'ipa_sm3'		=> '56',
+		// 		'ipa_sm4'		=> '57',
+		// 		'ipa_sm5'		=> '58',
+		// 		'average_ipa'	=> '59',
+		// 	]);
+		// }
 
 		
 
