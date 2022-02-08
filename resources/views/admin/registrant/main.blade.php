@@ -14,6 +14,7 @@
 								<th>Reg ID</th>
 								<th>Action</th>
 								<th>Name</th>
+								<th>Kelas</th>
 								<th>Gender</th>
 								<th>Phone</th>
 								<th>Parent Name</th>
@@ -49,6 +50,7 @@
 									</div>
 								</td>
 								<td>{{ $item->name }}</td>
+								<td>{{ $item->lane }}</td>
 								<td>{{ $item->get['gender'] }}</td>
 								<td>{{ $item->phone }}</td>
 								<td>{{ $item->parent_name }}</td>
@@ -61,6 +63,7 @@
 								<th>Reg ID</th>
 								<th>Action</th>
 								<th>Name</th>
+								<th>Kelas</th>
 								<th>Gender</th>
 								<th>Phone</th>
 								<th>Parent Name</th>

@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Registrant;
+use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Concerns\FromCollection;
 // use Maatwebsite\Excel\Concerns\FromQuery;
@@ -10,26 +11,28 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 
-class RegistrantsExport implements FromCollection, WithHeadings, WithMapping
+class RegistrantsExport implements FromCollection, WithHeadings, WithMapping, WithColumnFormatting, WithColumnWidths
 {
-	// public function properties(): array
- //    {
- //        return [
- //            'creator'        => 'Ditya Developer',
- //            'lastModifiedBy' => 'Ditya Developer',
- //            'title'          => 'Registrant PPDB Export',
- //            'description'    => 'Registrant Master Data Of PPDB Export',
- //            'subject'        => 'Registrant',
- //            'keywords'       => 'registrant,export,spreadsheet',
- //            'category'       => 'Registrant',
- //            'manager'        => 'Registrant PPDB Export',
- //            'company'        => 'Registrant PPDB Export',
- //        ];
- //    }
+    // public function properties(): array
+    //    {
+    //        return [
+    //            'creator'        => 'Ditya Developer',
+    //            'lastModifiedBy' => 'Ditya Developer',
+    //            'title'          => 'Registrant PPDB Export',
+    //            'description'    => 'Registrant Master Data Of PPDB Export',
+    //            'subject'        => 'Registrant',
+    //            'keywords'       => 'registrant,export,spreadsheet',
+    //            'category'       => 'Registrant',
+    //            'manager'        => 'Registrant PPDB Export',
+    //            'company'        => 'Registrant PPDB Export',
+    //        ];
+    //    }
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         return Registrant::all();
@@ -52,6 +55,7 @@ class RegistrantsExport implements FromCollection, WithHeadings, WithMapping
             'School Origin',
             'Adress',
             'Majors',
+            'Kelas',
             'Bing S3',
             'Bing S3',
             'Bing S3',
@@ -79,8 +83,8 @@ class RegistrantsExport implements FromCollection, WithHeadings, WithMapping
             $registrant->id_registrant,
             $registrant->name,
             $registrant->place_birth,
-            $registrant->date_birth,
-            $registrant->gender,
+            Date::dateTimeToExcel(Carbon::parse($registrant->date_birth)),
+            $registrant->get['gender'],
             $registrant->region,
             $registrant->phone,
             $registrant->parent_name,
@@ -88,6 +92,7 @@ class RegistrantsExport implements FromCollection, WithHeadings, WithMapping
             $registrant->school_origin,
             $registrant->adress,
             $registrant->majors,
+            $registrant->lane,
             $registrant->bing_sm3,
             $registrant->bing_sm4,
             $registrant->bing_sm5,
@@ -104,15 +109,51 @@ class RegistrantsExport implements FromCollection, WithHeadings, WithMapping
             $registrant->ipa_sm4,
             $registrant->ipa_sm5,
             $registrant->average_ipa,
-            Date::dateTimeToExcel($registrant->created_at),
+            Date::dateTimeToExcel(Carbon::parse($registrant->created_at)),
         ];
     }
 
-    // public function columnFormats(): array
-    // {
-    //     return [
-    //     	'H'	 => NumberFormat::FORMAT_GENERAL,
-    //         'AD' => NumberFormat::FORMAT_DATE_YYYYMMDD2,
-    //     ];
-    // }
+    public function columnWidths(): array
+    {
+        return [
+            'A' => 5,
+            'B' => 20,
+            'C' => 35,
+            'D' => 15,
+            'E' => 15,
+            'F' => 15,
+            'G' => 15,
+            'H' => 15,
+            'I' => 15,
+            'J' => 15,
+            'K' => 15,
+            'L' => 15,
+            'M' => 15,
+            'N' => 15,
+            'O' => 15,
+            'P' => 15,
+            'Q' => 15,
+            'R' => 15,
+            'S' => 15,
+            'T' => 15,
+            'U' => 15,
+            'V' => 23,
+            'W' => 15,
+            'X' => 15,
+            'Y' => 15,
+            'Z' => 15,
+            'AA' => 15,
+            'AB' => 15,
+            'AC' => 15,
+            'AD' => 15,
+            'AE' => 25,
+        ];
+    }
+    public function columnFormats(): array
+    {
+        return [
+            'E'     => NumberFormat::FORMAT_DATE_DDMMYYYY,
+            'AE'     => NumberFormat::FORMAT_DATE_DDMMYYYY,
+        ];
+    }
 }

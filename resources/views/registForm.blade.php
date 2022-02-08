@@ -36,7 +36,7 @@
 		}
 
 		body {
-			
+
 			font-family: 'Noto Sans', sans-serif;
 		}
 
@@ -166,6 +166,20 @@
 											</div>
 										</div>
 
+                                        <h5 class="color-yellow" style="padding-top: 30px">Jalur Masuk</h5>
+										<div class="row">
+											<div class="col-xl-12 col-md-12">
+												<div class="form-group input-group">
+													<select name="lane" class="form-control custom-select required">
+														<option class="disable">Pilih Jalur</option>
+														<option value="Regular">Regular</option>
+														<option value="Unggulan">Unggulan</option>
+													</select>
+												</div>
+                                                <label for="majors" class="text-danger" id="unggulan_requirement" hidden></label>
+											</div>
+										</div>
+
 										<h5 class="color-yellow" style="padding-top: 30px">Nilai Raport</h5>
 
 										<div class="row">
@@ -197,6 +211,11 @@
 																			<div class="form-group">
 																				<input type="text" name="bing_sm5" class="form-control required" placeholder="Semester 5">
 																				<i class="icon-user"></i>
+																			</div>
+																		</div>
+                                                                        <div class="col-xl-12 col-md-12 col-sm-4">
+																			<div class="form-group">
+																				<input type="text" name="average_bing" class="form-control required" disabled placeholder="Rata Rata">
 																			</div>
 																		</div>
 																	</div>
@@ -232,6 +251,11 @@
 																				<i class="icon-user"></i>
 																			</div>
 																		</div>
+                                                                        <div class="col-xl-12 col-md-12 col-sm-4">
+																			<div class="form-group">
+																				<input type="text" name="average_mat" class="form-control required" disabled placeholder="Rata Rata">
+																			</div>
+																		</div>
 																	</div>
 																</td>
 															</tr>
@@ -265,6 +289,11 @@
 																				<i class="icon-user"></i>
 																			</div>
 																		</div>
+                                                                        <div class="col-xl-12 col-md-12 col-sm-4">
+																			<div class="form-group">
+																				<input type="text" name="average_ips" class="form-control required" disabled placeholder="Rata Rata">
+																			</div>
+																		</div>
 																	</div>
 																</td>
 															</tr>
@@ -296,6 +325,11 @@
 																			<div class="form-group">
 																				<input type="text" name="ipa_sm5" class="form-control required" placeholder="Semester 5">
 																				<i class="icon-user"></i>
+																			</div>
+																		</div>
+                                                                        <div class="col-xl-12 col-md-12 col-sm-4">
+																			<div class="form-group">
+																				<input type="text" name="average_ipa" class="form-control required" disabled placeholder="Rata Rata">
 																			</div>
 																		</div>
 																	</div>
@@ -339,51 +373,83 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="{{ asset('lp/js/calc-average.js') }}"></script>
 	<script>
-		const firstCalendar = MCDatepicker.create({ 
+		const firstCalendar = MCDatepicker.create({
 			el: '#date_birth'
 		})
 
 		$(document).ready(function() {
+            let unggulan_lesson_requirement = '';
+
 			$('#mc-btn__ok').on('click', function() {
 				var date_birth = $('#date_birth').val();
-				console.log(date_birth);
 
-			$.ajax({
-                type     : "GET",
-                url      : "{{ route('..age') }}",
-                data	 : {
-                	date_birth: date_birth
-                },
-                success  : function (age) {
-                    console.log(age);
+                $.ajax({
+                    type     : "GET",
+                    url      : "{{ route('..age') }}",
+                    data	 : {
+                        date_birth: date_birth
+                    },
+                    success  : function (age) {
+                        console.log(age);
 
-                    if (age == 0) {
-                    	$('#date_birth').val('');
-                    	Swal.fire({
-                    		icon: 'error',
-                    		title: 'Oops...',
-                    		text: 'Umur anda tidak ada 1 tahun!',
-                    	});
-                    }else if (age > 21) {
-                    	$('#date_birth').val('');
-                    	Swal.fire({
-                    		icon: 'error',
-                    		title: 'Oops...',
-                    		text: 'Maaf Umur Anda Lebih Dari 21 Tahun!',
-                    	});
-                    }else if(age < 10){
-                    	$('#date_birth').val('');
-                    	Swal.fire({
-                    		icon: 'error',
-                    		title: 'Oops...',
-                    		text: 'Anda terlalu dini untuk masuk {{ fSet('schoolName')->title }}!',
-                    	});
+                        if (age == 0) {
+                            $('#date_birth').val('');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Umur anda tidak ada 1 tahun!',
+                            });
+                        }else if (age > 21) {
+                            $('#date_birth').val('');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Maaf Umur Anda Lebih Dari 21 Tahun!',
+                            });
+                        }else if(age < 10){
+                            $('#date_birth').val('');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Anda terlalu dini untuk masuk {{ fSet('schoolName')->title }}!',
+                            });
+                        }
+
                     }
+                });
+            });
 
+            $('select[name="majors"]').on('change', function () {
+                let majors = $(this).val();
+
+                if(majors == 'IPA'){
+                    unggulan_lesson_requirement = 'Matematika, IPA dan B Ingris';
+                }else if(majors == 'IPS'){
+                    unggulan_lesson_requirement = 'Matematika, IPS dan B Ingris';
+                }
+
+                average_majors();
+                $('#unggulan_requirement').text(`* Nilai rata rata ${unggulan_lesson_requirement} secara akumulatif minimal 75`);
+            });
+
+            $('select[name="lane"]').on('change', function () {
+                let lane = $(this).val();
+                $('#unggulan_requirement').attr('hidden', true);
+
+                if(lane == 'Regular'){
+
+                }else if(lane == 'Unggulan'){
+                    average_majors();
+                    $('#unggulan_requirement').attr('hidden', false);
+                }else {
+                    $(this).change('');
+                    alert('Jalur masuk tidak diketahui!');
                 }
             });
 
-});
+
 		});
 	</script>

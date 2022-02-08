@@ -9,16 +9,16 @@
 					<h4 class="card-title m-t-10">{{ $reg->name }}</h4>
 					<h6 class="card-subtitle">{{ $reg->school_origin }}</h6>
 					<div class="row text-center justify-content-md-center">
-						{{ $reg->phone }}
+						Jalur {{ $reg->lane }}
 					</div>
 				</center>
 			</div>
 			<div>
 				<hr> </div>
 				<div class="card-body"> <small class="text-muted">Birthday </small>
-					<h6>{{ $reg->place_birth }}, {{ \Carbon\Carbon::parse($reg->date_birth)->format('d M Y') }}</h6> 
+					<h6>{{ $reg->place_birth }}, {{ \Carbon\Carbon::parse($reg->date_birth)->format('d M Y') }}</h6>
 					<small class="text-muted p-t-30 db">Phone</small>
-					<h6>{{ $reg->phone }}</h6> 
+					<h6>{{ $reg->phone }}</h6>
 					<small class="text-muted p-t-30 db">Address</small>
 					<h6>{{ $reg->adress }}</h6>
 					<small class="text-muted p-t-30 db">Register Date</small>
@@ -104,6 +104,11 @@
 								<div class="col-md-3 col-xs-6 b-r bg-warning"> <label>Register At</label>
 									<br>
 									<p class="text-white">{{ $reg->created_at->format('d F Y') }}</p>
+								</div>
+
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Kelas</strong>
+									<br>
+									<p class="text-muted">{{ $reg->lane }}</p>
 								</div>
 							</div>
 							<hr>
@@ -200,6 +205,20 @@
 												<option class="disable">Pilih Jurusan</option>
 												<option value="IPS" {{ $reg->majors == 'IPS' ? 'selected' : '' }}>IPS</option>
 												<option value="IPA" {{ $reg->majors == 'IPA' ? 'selected' : '' }}>IPA</option>
+											</select>
+											<!-- <i class="icon-user"></i> -->
+										</div>
+									</div>
+								</div>
+
+                                <h5 style="padding-top: 30px">Jalur Masuk</h5>
+								<div class="row">
+									<div class="col-xl-12 col-md-12">
+										<div class="form-group input-group">
+											<select name="lane" class="form-control custom-select required">
+												<option class="disable">Pilih Jalur</option>
+												<option value="Regular" {{ $reg->lane == 'Regular' ? 'selected' : '' }}>Regular</option>
+												<option value="Unggulan" {{ $reg->lane == 'Unggulan' ? 'selected' : '' }}>Unggulan</option>
 											</select>
 											<!-- <i class="icon-user"></i> -->
 										</div>

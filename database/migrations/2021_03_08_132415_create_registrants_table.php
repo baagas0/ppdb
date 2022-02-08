@@ -16,6 +16,7 @@ class CreateRegistrantsTable extends Migration
         Schema::create('registrants', function (Blueprint $table) {
             $table->id();
             $table->string('id_registrant');
+            $table->string('lane');
             $table->string('avatar')->default('adm/images/male.png');
             $table->string('name');
             $table->string('place_birth');
