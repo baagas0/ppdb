@@ -45,6 +45,10 @@ class CreateRegistrantsTable extends Migration
             $table->integer('ipa_sm4');
             $table->integer('ipa_sm5');
             $table->integer('average_ipa');
+            $table->string('file_sm_1');
+            $table->string('file_sm_2');
+            $table->string('file_sm_3');
+            $table->string('file_piagam')->nullable();
             $table->timestamps();
         });
     }

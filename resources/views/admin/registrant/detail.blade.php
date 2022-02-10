@@ -34,16 +34,19 @@
 				<!-- Tabs -->
 				<ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
 					<li class="nav-item">
-						<a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#last-month" role="tab" aria-controls="pills-profile" aria-selected="false">Personal Data</a>
+						<a class="nav-link active" id="pills-profile-tab" href="#profile-tab" data-toggle="pill" role="tab" aria-controls="pills-profile" aria-selected="false">Personal Data</a>
+					</li>
+                    <li class="nav-item">
+						<a class="nav-link" id="pills-profile-file" href="#profile-file" data-toggle="pill" role="tab" aria-controls="pills-file" aria-selected="false">Personal File</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#previous-month" role="tab" aria-controls="pills-setting" aria-selected="false">Academic Value</a>
+						<a class="nav-link" id="pills-setting-tab" href="#setting-tab" data-toggle="pill" role="tab" aria-controls="pills-setting" aria-selected="false">Academic Value</a>
 					</li>
 				</ul>
 				<!-- Tabs -->
 				<div class="tab-content" id="pills-tabContent">
 
-					<div class="tab-pane fade show active" id="last-month" role="tabpanel" aria-labelledby="pills-profile-tab">
+					<div class="tab-pane fade show active" id="profile-tab" role="tabpanel" aria-labelledby="pills-profile-tab">
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-3 col-xs-6 b-r"> <strong>Full Name</strong>
@@ -228,7 +231,32 @@
 							</form>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="previous-month" role="tabpanel" aria-labelledby="pills-setting-tab">
+                    <div class="tab-pane fade show active" id="profile-file" role="tabpanel" aria-labelledby="pills-profile-tab">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-12 b-r"> <strong>Scan File Semester 3</strong>
+									<br>
+                                    <a href="{{ Storage::url($reg->file_sm_3) }}" target="__blank">Klik Disini</a>
+								</div>
+
+								<div class="col-md-12 b-r"> <strong>Scan File Semester 4</strong>
+									<br>
+									<a href="{{ Storage::url($reg->file_sm_4) }}" target="__blank">Klik Disini</a>
+								</div>
+
+								<div class="col-md-12 b-r"> <strong>Scan File Semester 5</strong>
+									<br>
+									<a href="{{ Storage::url($reg->file_sm_5) }}" target="__blank">Klik Disini</a>
+								</div>
+
+								<div class="col-md-12"> <strong>Piagam / Penghargaan</strong>
+									<br>
+									<a href="{{ isset($reg->file_piagam) ? Storage::url($reg->file_piagam) : '#' }}" target="__blank">{{ isset($reg->file_piagam) ? 'Klik Disini' : 'Tidak ada file' }}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="setting-tab" role="tabpanel" aria-labelledby="pills-setting-tab">
 						<div class="card-body">
 							<div class="table-responsive">
 								<table id="default_order_desc" class="table table-striped table-bordered display" style="width:100%">

@@ -37,6 +37,10 @@ class Registrant extends Model
         'ipa_sm4',
         'ipa_sm5',
         'average_ipa',
+        'file_sm_1',
+        'file_sm_2',
+        'file_sm_3',
+        'file_piagam',
     ];
 
 

@@ -78,7 +78,7 @@
 								<!-- <div class="container"> -->
 									@include('layouts.alert')
 
-									<form method="POST" action="{{ route('..save.registration') }}">
+									<form method="POST" action="{{ route('..save.registration') }}" enctype="multipart/form-data">
 										@csrf
 										<h5 class="color-yellow" style="padding-top: 0px">Profil Siswa</h5>
 										<!-- <p style="color: #000000">Nama</p> -->
@@ -340,6 +340,42 @@
 												</div>
 											</div>
 										</div>
+
+                                        <h5 class="color-yellow" style="padding-top: 30px">Upload File</h5>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-md-12">
+                                                <div class="input-group mb-3">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="file_sm_1" name="file_sm_1">
+                                                        <label class="custom-file-label" for="file_sm_1">Scan Nilai Semester 1</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-md-12">
+                                                <div class="input-group mb-3">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="file_sm_2" name="file_sm_2">
+                                                        <label class="custom-file-label" for="file_sm_2">Scan Nilai Semester 2</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-md-12">
+                                                <div class="input-group mb-3">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="file_sm_3" name="file_sm_3">
+                                                        <label class="custom-file-label" for="file_sm_3">Scan Nilai Semester 3</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-md-12">
+                                                <div class="input-group mb-3">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="file_piagam" name="file_piagam">
+                                                        <label class="custom-file-label" for="file_piagam">Piagam / Sertifikat (jika ada)</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
 										<div class="row">
 											<div class="col-xl-12 col-md-12">

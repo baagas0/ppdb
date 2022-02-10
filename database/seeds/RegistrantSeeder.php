@@ -42,6 +42,11 @@ class RegistrantSeeder extends Seeder
             'ipa_sm4'        => '57',
             'ipa_sm5'        => '58',
             'average_ipa'    => '59',
+
+            'file_sm_1'     => '1',
+            'file_sm_2'     => '1',
+            'file_sm_3'     => '1',
+            'file_piagam'   => '1',
         ]);
         Registrant::create([
             'lane'          => 'Regular',
@@ -72,6 +77,11 @@ class RegistrantSeeder extends Seeder
             'ipa_sm4'       => '57',
             'ipa_sm5'       => '58',
             'average_ipa'   => '59',
+
+            'file_sm_1'     => '1',
+            'file_sm_2'     => '1',
+            'file_sm_3'     => '1',
+            'file_piagam'   => '1',
         ]);
     }
 }
