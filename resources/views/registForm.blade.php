@@ -1,5 +1,14 @@
 <!doctype html>
 <html lang="en">
+    @php
+        $regularRegistrationDate    = fSet('regular-registration-date')->content;
+        $regularDate = explode('/', $regularRegistrationDate);
+        $isRegularDate = cb()->between($regularDate[0], $regularDate[1]);
+
+        $unggulanRegistrationDate    = fSet('unggulan-registration-date')->content;
+        $unggulanDate = explode('/', $unggulanRegistrationDate);
+        $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
+    @endphp
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -66,8 +75,8 @@
 								<img src="{{ asset(fSet('favicon')->file) }}" class="img-responsive align-self-center float-left" alt="Logo" style="width: 100px;height: auto;">
 							</div>
 							<div class="col-md-9">
-								<h1 class="bold">Form Pendaftaran Jalur Regular</h1>
-								<h2 class="bold">PPDB MAN 2 Pati {{ date('Y') }}</h2>
+								<h1 class="bold">Form Pendaftaran Jalur {{ $isRegularDate && $isUnggulanDate ? 'Regular & Unggulan' : ($isRegularDate ? 'Regular' : ($isUnggulanDate ? 'Unggulan' : '(belum dibuka)'))}}</h1>
+								<h2 class="bold">{{ fSet('title')->title }} {{ date('Y') }}</h2>
 								<p>Silahkan Isi data diri anda pada form berikut ini</p>
 							</div>
 						</div>
@@ -171,18 +180,11 @@
 											<div class="col-xl-12 col-md-12">
 												<div class="form-group input-group">
 													<select name="lane" class="form-control custom-select required">
-                                                        @php
-                                                            $regularRegistrationDate    = fSet('regular-registration-date')->content;
-                                                            $regularDate = explode('/', $regularRegistrationDate);
-
-                                                            $unggulanRegistrationDate    = fSet('unggulan-registration-date')->content;
-                                                            $unggulanDate = explode('/', $unggulanRegistrationDate);
-                                                        @endphp
 														<option class="disable">Pilih Jalur</option>
-                                                        @if(cb()->between($regularDate[0], $regularDate[1]))
+                                                        @if($isRegularDate)
 														<option value="Regular">Regular</option>
                                                         @endif
-                                                        @if(cb()->between($unggulanDate[0], $unggulanDate[1]))
+                                                        @if($isUnggulanDate)
 														<option value="Unggulan">Unggulan</option>
                                                         @endif
 													</select>
