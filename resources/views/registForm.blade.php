@@ -171,9 +171,20 @@
 											<div class="col-xl-12 col-md-12">
 												<div class="form-group input-group">
 													<select name="lane" class="form-control custom-select required">
+                                                        @php
+                                                            $regularRegistrationDate    = fSet('regular-registration-date')->content;
+                                                            $regularDate = explode('/', $regularRegistrationDate);
+
+                                                            $unggulanRegistrationDate    = fSet('unggulan-registration-date')->content;
+                                                            $unggulanDate = explode('/', $unggulanRegistrationDate);
+                                                        @endphp
 														<option class="disable">Pilih Jalur</option>
+                                                        @if(cb()->between($regularDate[0], $regularDate[1]))
 														<option value="Regular">Regular</option>
+                                                        @endif
+                                                        @if(cb()->between($unggulanDate[0], $unggulanDate[1]))
 														<option value="Unggulan">Unggulan</option>
+                                                        @endif
 													</select>
 												</div>
                                                 <label for="majors" class="text-danger" id="unggulan_requirement" hidden></label>

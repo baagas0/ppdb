@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+@php
+    $schoolName = fSet('schoolName')->title;
+@endphp
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -96,15 +98,27 @@
 				<div class="text-center text-white container">
 					<img src="{{ asset('lp/images/time-done.png') }}" class="img-responsive" alt="Time Done" style="width: 55px">
 					<h6>Waktu Pendaftaran Kelas Unggulan</h6>
-					<p>Pendaftaran : 8 Februari 2021 - 27 Februari 2021</p>
+                    @php
+                        $regularRegistrationDate    = fSet('regular-registration-date')->content;
+                        $regularTestDate    = fSet('regular-test-date')->content;
+                        $regularAnnouncementDate    = fSet('regular-announcement-date')->content;
+                        $regularReRegisterDate  = fSet('regular-re-register-date')->content;
 
-					<p>Seleksi/Test : 01 Maret 2021 Di MAN 2 Pati</p>
+                        $regularDate = explode('/', $regularRegistrationDate);
+                        $regularReDate = explode('/', $regularReRegisterDate);
 
-					<p>Pengumuman : 04 Maret 2021</p>
+                        $unggulanRegistrationDate    = fSet('unggulan-registration-date')->content;
+                        $unggulanDate = explode('/', $unggulanRegistrationDate);
+                    @endphp
+					<p>Pendaftaran : {{ cb($regularDate[0])->format('d M Y') }} - {{ cb($regularDate[1])->format('d M Y') }}</p>
 
-					<p>Dafter Ulang : 05 s.d 10 Maret 2021</p>
+					<p>Seleksi/Test : {{ cb($regularTestDate)->format('d M Y') }} Di {{ $schoolName }}</p>
 
-					<p>Waktu : 08:00 s.d 13:00 WIB di MAN 2 Pati</p>
+					<p>Pengumuman : {{ cb($regularAnnouncementDate)->format('d M Y') }}</p>
+
+					<p>Dafter Ulang : {{ cb($regularReDate[0])->format('d M Y') }} - {{ cb($regularReDate[1])->format('d M Y') }}</p>
+
+					<p>Waktu : 08:00 s.d 13:00 WIB di {{ $schoolName }}</p>
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6 pt-3 pb-3" style="background-color: #3598db">
@@ -112,8 +126,8 @@
 
 					<img src="{{ asset('lp/images/time.png') }}" class="img-responsive" alt="Time" style="width: 50px">
 					<h6>Waktu Pendaftaran Kelas Regular</h6>
-					<p>Pendaftaran : 17 Maret 2021</p>
-					<p>Setelah Daftar Silahkan lagsung Daftar Ulang di MAN 2 Pati Pukul 08:00-13:00 WIB Karena Kuota yang terbatas</p>
+					<p>Pendaftaran : {{ cb($unggulanDate[0])->format('d M Y') }} - {{ cb($unggulanDate[1])->format('d M Y') }}</p>
+					<p>Setelah Daftar Silahkan lagsung Daftar Ulang di {{ $schoolName }} Pukul 08:00-13:00 WIB Karena Kuota yang terbatas</p>
 				</div>
 			</div>
 		</div>
@@ -225,7 +239,7 @@
 	 						</a>
 	 					</div><!-- /.col-sm-6 -->
 	 					<div class="col-sm-6">
-	 						
+
 	 					</div><!-- /.col-sm-6 -->
 	 				</div><!-- /.row -->
 	 			</div><!-- /.col-lg-6 -->
@@ -233,7 +247,7 @@
 	 		<div class="row mt-40">
 	 			<div class="col-sm-12 col-md-12 col-lg-6 d-flex flex-column justify-content-between">
 	 				<div class="row row-no-gutter read-note">
-	 					
+
 	 				</div><!-- /.row -->
 	 				<div class="row">
 	 					<div class="col-sm-6">

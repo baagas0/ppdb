@@ -6,9 +6,9 @@
 			<div class="card-body">
 				<h4 class="card-title">Setting Master Data</h4>
 				<h6 class="card-subtitle">Master data is the data content of a table that has been previously inputted.</h6>
-				
+
 				<div class="table-responsive">
-					<table id="default_order_asc" class="table table-striped table-bordered display" style="width:100%">
+					<table id="default_order_desc" class="table table-striped table-bordered display" style="width:100%">
 						<thead>
 							<tr>
 								<th>Slug</th>
