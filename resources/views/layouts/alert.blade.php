@@ -24,11 +24,11 @@
         @endif
     </div>
     <div class="col-lg-12">
-        <div class="alert alert-warning alert-dismissible fade hide" role="alert">
+        {{-- <div class="alert alert-warning alert-dismissible fade hide" role="alert">
             <div class="alert-content"></div>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-        </div>
+        </div> --}}
     </div>
 </div>
