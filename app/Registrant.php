@@ -9,6 +9,7 @@ class Registrant extends Model
 {
     protected $fillable = [
         'id_registrant',
+        'avatar',
         'lane',
         'name',
         'place_birth',
@@ -49,13 +50,11 @@ class Registrant extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            // dd($model);
-
-            if ($model->gender == 'L') {
-                $model->avatar = 'adm/images/male.png';
-            } else {
-                $model->avatar = 'adm/images/female.png';
-            }
+            // if ($model->gender == 'L') {
+            //     $model->avatar = 'adm/images/male.png';
+            // } else {
+            //     $model->avatar = 'adm/images/female.png';
+            // }
 
             $model->id_registrant = IdGenerator::generate(['table' => 'registrants', 'field' => 'id_registrant', 'length' => 10, 'prefix' => 'REG-' . date('Y')]);
         });

@@ -10,13 +10,13 @@
 
 	<meta property="og:url"                content="http://demo-web.my.id/ppdb" />
 	<meta property="og:type"               content="platform" />
-	<meta property="og:title"              content="{{ fSet('title')->title }}" />
+	<meta property="og:title"              content="{{ fSet('title')->title }} - Demo Web" />
 	<meta property="og:description"        content="PPDB Online {{ fSet('schoolName')->title }} | Build by DityaDev" />
 	<meta property="og:image"              content="{{ asset('lp/images/lp.png') }}" />
 
 	<meta name="description" content="PPDB Online {{ fSet('schoolName')->title }}">
 	<link href="{{ asset(fSet('favicon')->file) }}" rel="icon">
-	<title>{{ fSet('title')->title }}</title>
+	<title>{{ fSet('title')->title }} - Demo Web</title>
 
 	<link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800;900&family=Roboto:wght@400;700&display=swap">
@@ -59,6 +59,9 @@
 							</li><!-- /.nav-item -->
 							<li class="nav__item">
 								<a href="{{ route('..registration') }}" class="nav__item-link">Daftar PPDB</a>
+							</li><!-- /.nav-item -->
+                            <li class="nav__item">
+								<a href="{{ route('..cetak.formulir') }}" class="nav__item-link">Cetak Formulir</a>
 							</li><!-- /.nav-item -->
 						</ul><!-- /.navbar-nav -->
 					</div><!-- /.navbar-collapse -->

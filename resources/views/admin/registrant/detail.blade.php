@@ -5,7 +5,7 @@
 	<div class="col-lg-4 col-xlg-3 col-md-5">
 		<div class="card">
 			<div class="card-body">
-				<center class="m-t-30"> <img src="{{ asset($reg->avatar) }}" class="rounded-circle" width="150" />
+				<center class="m-t-30"> <img src="{{ Storage::url($reg->avatar) }}" class="rounded-circle" width="150" />
 					<h4 class="card-title m-t-10">{{ $reg->name }}</h4>
 					<h6 class="card-subtitle">{{ $reg->school_origin }}</h6>
 					<div class="row text-center justify-content-md-center">
@@ -234,6 +234,11 @@
                     <div class="tab-pane fade show active" id="profile-file" role="tabpanel" aria-labelledby="pills-profile-tab">
 						<div class="card-body">
 							<div class="row">
+                                <div class="col-md-12 b-r"> <strong>Foto Diri</strong>
+									<br>
+                                    <a href="{{ Storage::url($reg->avatar) }}" target="__blank">Klik Disini</a>
+								</div>
+
 								<div class="col-md-12 b-r"> <strong>Scan File Semester 3</strong>
 									<br>
                                     <a href="{{ Storage::url($reg->file_sm_3) }}" target="__blank">Klik Disini</a>

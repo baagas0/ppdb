@@ -18,8 +18,17 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 
 	<!-- Identyty Page -->
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+	<meta property="og:url"                content="http://demo-web.my.id/ppdb" />
+	<meta property="og:type"               content="platform" />
+	<meta property="og:title"              content="{{ fSet('title')->title }} - Demo Web" />
+	<meta property="og:description"        content="PPDB Online {{ fSet('schoolName')->title }} | Build by DityaDev" />
+	<meta property="og:image"              content="{{ asset('lp/images/lp.png') }}" />
+
+	<meta name="description" content="PPDB Online {{ fSet('schoolName')->title }}">
 	<link href="{{ asset(fSet('favicon')->file) }}" rel="icon">
-	<title>{{ config('app.name') }}</title>
+	<title>{{ fSet('title')->title }} - Demo Web</title>
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -356,6 +365,14 @@
 
                                         <h5 class="color-yellow" style="padding-top: 30px">Upload File</h5>
                                         <div class="row">
+                                            <div class="col-xl-12 col-md-12">
+                                                <div class="input-group mb-3">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="avatar" name="avatar">
+                                                        <label class="custom-file-label" for="avatar">Foto Diri</label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">

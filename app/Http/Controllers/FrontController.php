@@ -57,6 +57,10 @@ class FrontController extends Controller
 
         $length = 3;
 
+        $avatar = $request->file('avatar');
+        $avatar_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . $avatar->getClientOriginalName();
+        $avatar_path = Storage::putFileAs('public/images', $avatar, $avatar_name);
+
         $file_sm_1 = $request->file('file_sm_1');
         $file_sm_1_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . $file_sm_1->getClientOriginalName();
         $file_sm_1_path = Storage::putFileAs('public/semester', $file_sm_1, $file_sm_1_name);
@@ -70,14 +74,12 @@ class FrontController extends Controller
         $file_sm_3_path = Storage::putFileAs('public/semester', $file_sm_3, $file_sm_3_name);
 
         $file_piagam = $request->file('file_piagam');
-        // dd($request->hasFile('file_piagam'));
         if ($request->hasFile('file_piagam')) {
             $file_piagam_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . $file_piagam->getClientOriginalName();
             $file_piagam_path = Storage::putFileAs('public/semester', $file_piagam, $file_piagam_name);
         } else {
             $file_piagam_path = null;
         }
-        // dd($file_piagam_path);
 
         if (config('app.debug') == false) {
             $registrant = Registrant::create([
@@ -110,6 +112,7 @@ class FrontController extends Controller
                 'ipa_sm5'       => $request->ipa_sm5,
                 'average_ipa'   => $average_ipa,
 
+                'avatar'        => $avatar_path,
                 'file_sm_1'     => $file_sm_1_path,
                 'file_sm_2'     => $file_sm_2_path,
                 'file_sm_3'     => $file_sm_3_path,
@@ -146,6 +149,7 @@ class FrontController extends Controller
                 'ipa_sm5'        => '58',
                 'average_ipa'    => '59',
 
+                'avatar'        => $avatar_path,
                 'file_sm_1'     => $file_sm_1_path,
                 'file_sm_2'     => $file_sm_2_path,
                 'file_sm_3'     => $file_sm_3_path,
@@ -156,5 +160,33 @@ class FrontController extends Controller
 
 
         return redirect()->route('..registration')->with(['success' => 'Anda Berhasil mendaftar PPDB di Man 2 Pati lewat jalur regular', 'custom' => 'Download kartu peserta anda di <a href="' . route("..download.card", $registrant->id) . '">Klik Sini</a>']);
+    }
+
+    public function getCetakFormulir(Request $request)
+    {
+        $name = $request->get('name');
+        $date_birth = $request->get('date_birth');
+
+        $data['registrations'] = Registrant::where('name', 'like', '%' . $name . '%')
+            ->whereDate('date_birth', Carbon::parse($date_birth))
+            ->get();
+        $data['request'] = $request->all();
+
+        if (!$name && !$date_birth) {
+            $request->session()->flash('custom', 'Isi nama dan tanggal lahir anda untuk menemukan data pendaftaran anda!');
+        } else {
+            $request->session()->flash('success', 'Download formulir anda lewat tombol merah <>Download Formulir<>');
+        }
+        return view('cetakFormulir', $data);
+    }
+
+    public function getDownloadFormulir(Request $request)
+    {
+        // $data['data'] = Registrant::findOrFail($id);
+        // return view('card', $data);
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('cetakFormulirPdf');
+        $name = 'card-' . '.pdf';
+        $path = 'regist/card/';
+        return $pdf->setWarnings(true)->stream($name);
     }
 }
