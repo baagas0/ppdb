@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use App\Slider;
 use Illuminate\Support\Facades\Storage;
 use PDF;
+use setasign\Fpdi\Fpdi;
+use \setasign\Fpdi\PdfParser\StreamReader;
 
 class FrontController extends Controller
 {
@@ -180,13 +182,129 @@ class FrontController extends Controller
         return view('cetakFormulir', $data);
     }
 
-    public function getDownloadFormulir(Request $request)
+    public function postDownloadFormulir(Request $request, $id_registrant)
     {
-        // $data['data'] = Registrant::findOrFail($id);
-        // return view('card', $data);
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('cetakFormulirPdf');
-        $name = 'card-' . '.pdf';
-        $path = 'regist/card/';
-        return $pdf->setWarnings(true)->stream($name);
+        $pdf = new Fpdi();
+        $fileContent = file_get_contents(asset('regist/formulir5.pdf'), 'rb');
+
+        $pdf->AddPage();
+        $pdf->setSourceFile(StreamReader::createByString($fileContent));
+        $tplIdx = $pdf->importPage(1);
+        $pdf->useTemplate($tplIdx, 0, 0, 210);
+        $pdf->SetFont('times', '', 8);
+
+        $data = Registrant::where('id_registrant', $id_registrant)->first();
+
+        $v = 67;
+        $h = 62;
+        $space = 6.3;
+
+        $pdf->SetXY($h, $v);
+        $pdf->Write(0, $data->name);
+
+        $pdf->SetXY($h, $v + ($space * 1));
+        $pdf->Write(0, $data->place_birth);
+
+        $pdf->SetXY($h, $v + ($space * 2));
+        $pdf->Write(0, $data->gender);
+
+        $pdf->SetXY($h, $v + ($space * 3));
+        $pdf->Write(0, $data->region);
+
+        $pdf->SetXY($h, $v + ($space * 4) - 0.5);
+        $pdf->Write(0, '(62) ' . $data->phone);
+
+        $pdf->SetXY($h, $v + ($space * 5) - 0.5);
+        $pdf->Write(0, $data->school_origin);
+
+        $v = $v + 17;
+
+        $pdf->SetXY($h, $v + ($space * 5));
+        $pdf->Write(0, $data->parent_name);
+
+        $pdf->SetXY($h, $v + ($space * 6));
+        $pdf->Write(0, '(62) ' . $data->parent_phone);
+
+        $pdf->SetXY($h, $v + ($space * 7));
+        $pdf->Write(0, $data->adress);
+
+        $v = $v + 19;
+
+        $pdf->SetXY($h, $v + ($space * 7));
+        $pdf->Write(0, $data->majors);
+
+        $pdf->SetXY($h, $v + ($space * 8));
+        $pdf->Write(0, $data->lane);
+
+        /**
+         * Bahasa Ingris
+         */
+        $v = 179;
+        $v_space = 6;
+
+        $h = 93.5;
+        $h_space = 10.3;
+
+        $pdf->SetXY($h, $v);
+        $pdf->Write(0, $data->bing_sm3);
+
+        $pdf->SetXY($h + ($h_space * 1), $v);
+        $pdf->Write(0, $data->bing_sm4);
+
+        $pdf->SetXY($h + ($h_space * 2), $v);
+        $pdf->Write(0, $data->bing_sm5);
+
+        $pdf->SetXY($h + ($h_space * 3), $v);
+        $pdf->Write(0, $data->average_bing);
+        /**
+         * Matematika
+         */
+        $pdf->SetXY($h, $v + ($v_space * 1));
+        $pdf->Write(0, $data->mat_sm3);
+
+        $pdf->SetXY($h + ($h_space * 1), $v + ($v_space * 1));
+        $pdf->Write(0, $data->mat_sm4);
+
+        $pdf->SetXY($h + ($h_space * 2), $v + ($v_space * 1));
+        $pdf->Write(0, $data->mat_sm5);
+
+        $pdf->SetXY($h + ($h_space * 3), $v + ($v_space * 1));
+        $pdf->Write(0, $data->average_mat);
+        /**
+         * IPS
+         */
+        $pdf->SetXY($h, $v + ($v_space * 2));
+        $pdf->Write(0, $data->ips_sm3);
+
+        $pdf->SetXY($h + ($h_space * 1), $v + ($v_space * 2));
+        $pdf->Write(0, $data->ips_sm4);
+
+        $pdf->SetXY($h + ($h_space * 2), $v + ($v_space * 2));
+        $pdf->Write(0, $data->ips_sm5);
+
+        $pdf->SetXY($h + ($h_space * 3), $v + ($v_space * 2));
+        $pdf->Write(0, $data->average_ips);
+        /**
+         * IPA
+         */
+        $pdf->SetXY($h, $v + ($v_space * 3));
+        $pdf->Write(0, $data->ipa_sm3);
+
+        $pdf->SetXY($h + ($h_space * 1), $v + ($v_space * 3));
+        $pdf->Write(0, $data->ipa_sm4);
+
+        $pdf->SetXY($h + ($h_space * 2), $v + ($v_space * 3));
+        $pdf->Write(0, $data->ipa_sm5);
+
+        $pdf->SetXY($h + ($h_space * 3), $v + ($v_space * 3));
+        $pdf->Write(0, $data->average_ipa);
+
+        /**
+         * Tanda Tangan
+         */
+        $pdf->setXY(142.4, 228);
+        $pdf->cell(25, 3, $data->name, 0, 1, "C");
+
+        $pdf->Output();
     }
 }
