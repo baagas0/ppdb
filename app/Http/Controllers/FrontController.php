@@ -175,6 +175,7 @@ class FrontController extends Controller
         $data['request'] = $request->all();
 
         if (!$name && !$date_birth) {
+            $data['request'] = [];
             $request->session()->flash('custom', 'Isi nama dan tanggal lahir anda untuk menemukan data pendaftaran anda!');
         } else {
             $request->session()->flash('success', 'Download formulir anda lewat tombol merah <>Download Formulir<>');
@@ -305,6 +306,6 @@ class FrontController extends Controller
         $pdf->setXY(142.4, 228);
         $pdf->cell(25, 3, $data->name, 0, 1, "C");
 
-        $pdf->Output();
+        $pdf->Output('D', 'Formulir - ' . $id_registrant . '.pdf');
     }
 }
