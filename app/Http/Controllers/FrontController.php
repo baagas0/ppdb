@@ -169,15 +169,15 @@ class FrontController extends Controller
         $name = $request->get('name');
         $date_birth = $request->get('date_birth');
 
-        $data['registrations'] = Registrant::where('name', 'like', '%' . $name . '%')
-            ->whereDate('date_birth', Carbon::parse($date_birth))
-            ->get();
         $data['request'] = $request->all();
 
         if (!$name && !$date_birth) {
             $data['registrations'] = [];
             $request->session()->flash('custom', 'Isi nama dan tanggal lahir anda untuk menemukan data pendaftaran anda!');
         } else {
+            $data['registrations'] = Registrant::where('name', 'like', '%' . $name . '%')
+                ->whereDate('date_birth', Carbon::parse($date_birth))
+                ->get();
             $request->session()->flash('success', 'Download formulir anda lewat tombol merah <>Download Formulir<>');
         }
         return view('cetakFormulir', $data);
