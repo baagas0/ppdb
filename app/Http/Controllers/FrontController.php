@@ -175,7 +175,7 @@ class FrontController extends Controller
         $data['request'] = $request->all();
 
         if (!$name && !$date_birth) {
-            $data['request'] = [];
+            $data['registrations'] = [];
             $request->session()->flash('custom', 'Isi nama dan tanggal lahir anda untuk menemukan data pendaftaran anda!');
         } else {
             $request->session()->flash('success', 'Download formulir anda lewat tombol merah <>Download Formulir<>');
