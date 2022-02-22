@@ -83,85 +83,86 @@ class FrontController extends Controller
             $file_piagam_path = null;
         }
 
-        if (config('app.debug') == false) {
-            $registrant = Registrant::create([
-                'name'          => $request->name,
-                'place_birth'   => $request->place_birth,
-                'date_birth'    => Carbon::parse($request->date_birth)->format('Y-m-d'),
-                'gender'        => $request->gender,
-                'region'        => $request->region,
-                'phone'         => '62' . $request->phone,
-                'parent_name'   => $request->parent_name,
-                'parent_phone'  => '62' . $request->parent_phone,
-                'school_origin' => $request->school_origin,
-                'adress'        => $request->adress,
-                'majors'        => $request->majors,
-                'lane'          => $request->lane,
-                'bing_sm3'      => $request->bing_sm3,
-                'bing_sm4'      => $request->bing_sm4,
-                'bing_sm5'      => $request->bing_sm5,
-                'average_bing'  => $average_bing,
-                'mat_sm3'       => $request->mat_sm3,
-                'mat_sm4'       => $request->mat_sm4,
-                'mat_sm5'       => $request->mat_sm5,
-                'average_mat'   => $average_mat,
-                'ips_sm3'       => $request->ips_sm3,
-                'ips_sm4'       => $request->ips_sm4,
-                'ips_sm5'       => $request->ips_sm5,
-                'average_ips'   => $average_ips,
-                'ipa_sm3'       => $request->ipa_sm3,
-                'ipa_sm4'       => $request->ipa_sm4,
-                'ipa_sm5'       => $request->ipa_sm5,
-                'average_ipa'   => $average_ipa,
+        // if (config('app.debug') == false) {
+        $registrant = Registrant::create([
+            'name'          => $request->name,
+            'place_birth'   => $request->place_birth,
+            'date_birth'    => Carbon::parse($request->date_birth)->format('Y-m-d'),
+            'gender'        => $request->gender,
+            'region'        => $request->region,
+            'phone'         => '62' . $request->phone,
+            'parent_name'   => $request->parent_name,
+            'parent_phone'  => '62' . $request->parent_phone,
+            'school_origin' => $request->school_origin,
+            'adress'        => $request->adress,
+            'majors'        => $request->majors,
+            'lane'          => $request->lane,
+            'bing_sm3'      => $request->bing_sm3,
+            'bing_sm4'      => $request->bing_sm4,
+            'bing_sm5'      => $request->bing_sm5,
+            'average_bing'  => $average_bing,
+            'mat_sm3'       => $request->mat_sm3,
+            'mat_sm4'       => $request->mat_sm4,
+            'mat_sm5'       => $request->mat_sm5,
+            'average_mat'   => $average_mat,
+            'ips_sm3'       => $request->ips_sm3,
+            'ips_sm4'       => $request->ips_sm4,
+            'ips_sm5'       => $request->ips_sm5,
+            'average_ips'   => $average_ips,
+            'ipa_sm3'       => $request->ipa_sm3,
+            'ipa_sm4'       => $request->ipa_sm4,
+            'ipa_sm5'       => $request->ipa_sm5,
+            'average_ipa'   => $average_ipa,
 
-                'avatar'        => $avatar_path,
-                'file_sm_1'     => $file_sm_1_path,
-                'file_sm_2'     => $file_sm_2_path,
-                'file_sm_3'     => $file_sm_3_path,
-                'file_piagam'   => $file_piagam_path,
-            ]);
-        } else {
-            $registrant = Registrant::create([
-                'name'            => 'Bagas Trying Student',
-                'place_birth'    => 'Jepara',
-                'date_birth'    => date('Y-m-d'),
-                'gender'        => 'L',
-                'region'        => 'islam',
-                'phone'            => '089506373551',
-                'parent_name'    => 'my Parent',
-                'parent_phone'    => 'my Parent Phone',
-                'school_origin'    => 'SMP 1 Donorojo',
-                'adress'        => 'jl. benteng portugis',
-                'majors'        => 'IPS',
-                'lane'          => 'Regular',
-                'bing_sm3'        => '56',
-                'bing_sm4'        => '57',
-                'bing_sm5'        => '58',
-                'average_bing'    => '59',
-                'mat_sm3'        => '56',
-                'mat_sm4'        => '57',
-                'mat_sm5'        => '58',
-                'average_mat'    => '59',
-                'ips_sm3'        => '56',
-                'ips_sm4'        => '57',
-                'ips_sm5'        => '58',
-                'average_ips'    => '59',
-                'ipa_sm3'        => '56',
-                'ipa_sm4'        => '57',
-                'ipa_sm5'        => '58',
-                'average_ipa'    => '59',
+            'avatar'        => $avatar_path,
+            'file_sm_1'     => $file_sm_1_path,
+            'file_sm_2'     => $file_sm_2_path,
+            'file_sm_3'     => $file_sm_3_path,
+            'file_piagam'   => $file_piagam_path,
+        ]);
+        // } else {
+        //     $registrant = Registrant::create([
+        //         'name'            => 'Bagas Trying Student',
+        //         'place_birth'    => 'Jepara',
+        //         'date_birth'    => date('Y-m-d'),
+        //         'gender'        => 'L',
+        //         'region'        => 'islam',
+        //         'phone'            => '089506373551',
+        //         'parent_name'    => 'my Parent',
+        //         'parent_phone'    => 'my Parent Phone',
+        //         'school_origin'    => 'SMP 1 Donorojo',
+        //         'adress'        => 'jl. benteng portugis',
+        //         'majors'        => 'IPS',
+        //         'lane'          => 'Regular',
+        //         'bing_sm3'        => '56',
+        //         'bing_sm4'        => '57',
+        //         'bing_sm5'        => '58',
+        //         'average_bing'    => '59',
+        //         'mat_sm3'        => '56',
+        //         'mat_sm4'        => '57',
+        //         'mat_sm5'        => '58',
+        //         'average_mat'    => '59',
+        //         'ips_sm3'        => '56',
+        //         'ips_sm4'        => '57',
+        //         'ips_sm5'        => '58',
+        //         'average_ips'    => '59',
+        //         'ipa_sm3'        => '56',
+        //         'ipa_sm4'        => '57',
+        //         'ipa_sm5'        => '58',
+        //         'average_ipa'    => '59',
 
-                'avatar'        => $avatar_path,
-                'file_sm_1'     => $file_sm_1_path,
-                'file_sm_2'     => $file_sm_2_path,
-                'file_sm_3'     => $file_sm_3_path,
-                'file_piagam'   => $file_piagam_path,
-            ]);
-        }
+        //         'avatar'        => $avatar_path,
+        //         'file_sm_1'     => $file_sm_1_path,
+        //         'file_sm_2'     => $file_sm_2_path,
+        //         'file_sm_3'     => $file_sm_3_path,
+        //         'file_piagam'   => $file_piagam_path,
+        //     ]);
+        // }
 
-
-
-        return redirect()->route('..registration')->with(['success' => 'Anda Berhasil mendaftar PPDB di Man 2 Pati lewat jalur regular', 'custom' => 'Download kartu peserta anda di <a href="' . route("..download.card", $registrant->id) . '">Klik Sini</a>']);
+        return redirect()->route('..registration')->with([
+            'success' => 'Anda Berhasil mendaftar PPDB di Man 2 Pati lewat jalur ' . $request->lane,
+            'custom'  => 'Download formulir pendaftaran anda di <a href="' . route('..download.formulir', $registrant->id_registrant) . '">Klik Sini</a>'
+        ]);
     }
 
     public function getCetakFormulir(Request $request)
@@ -183,7 +184,7 @@ class FrontController extends Controller
         return view('cetakFormulir', $data);
     }
 
-    public function postDownloadFormulir(Request $request, $id_registrant)
+    public function getDownloadFormulir(Request $request, $id_registrant)
     {
         $pdf = new Fpdi();
         $fileContent = file_get_contents(asset('regist/formulir5.pdf'), 'rb');
