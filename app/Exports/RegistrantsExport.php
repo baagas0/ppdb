@@ -16,6 +16,10 @@ use Maatwebsite\Excel\Concerns\WithColumnWidths;
 
 class RegistrantsExport implements FromCollection, WithHeadings, WithMapping, WithColumnFormatting, WithColumnWidths
 {
+    public function __construct($lane)
+    {
+        $this->lane = $lane;
+    }
     // public function properties(): array
     //    {
     //        return [
@@ -35,7 +39,13 @@ class RegistrantsExport implements FromCollection, WithHeadings, WithMapping, Wi
      */
     public function collection()
     {
-        return Registrant::all();
+        if ($this->lane == null) {
+            $data = Registrant::all();
+        } else {
+            $data = Registrant::where('lane', $this->lane)->get();
+        }
+
+        return $data;
     }
 
     public function headings(): array

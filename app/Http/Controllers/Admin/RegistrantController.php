@@ -54,8 +54,13 @@ class RegistrantController extends Controller
         return redirect()->route('admin.registrant');
     }
 
-    public function getExportExcel()
+    public function getExportExcel($lane = null)
     {
-        return Excel::download(new RegistrantsExport, 'Registrants ' . date('d F Y') . '.xlsx');
+        if ($lane == null) {
+            $name = 'Registrants ' . date('d F Y') . '.xlsx';
+        } else {
+            $name = $lane . ' Registrants ' . date('d F Y') . '.xlsx';
+        }
+        return Excel::download(new RegistrantsExport($lane), $name);
     }
 }

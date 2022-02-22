@@ -51,11 +51,18 @@ class FrontController extends Controller
         $amount_mat    = $request->mat_sm3 + $request->mat_sm4 + $request->mat_sm5;
         $average_mat    = $amount_mat / 3;
 
-        $amount_ips    = $request->ips_sm3 + $request->ips_sm4 + $request->ips_sm5;
-        $average_ips    = $amount_ips / 3;
+        $average_ips = 0;
+        $average_ipa = 0;
 
-        $amount_ipa    = $request->ipa_sm3 + $request->ipa_sm4 + $request->ipa_sm5;
-        $average_ipa    = $amount_ipa / 3;
+        if ($request->majors == 'IPS') {
+            $amount_ips    = $request->ips_sm3 + $request->ips_sm4 + $request->ips_sm5;
+            $average_ips    = $amount_ips / 3;
+        } else if ($request->majors == 'IPA') {
+            $amount_ipa    = $request->ipa_sm3 + $request->ipa_sm4 + $request->ipa_sm5;
+            $average_ipa    = $amount_ipa / 3;
+        } else {
+            return redirect()->route('..registration')->with('danger', 'Pastikan anda memilih jurusan dengan benar!');
+        }
 
         $length = 3;
 
@@ -187,7 +194,7 @@ class FrontController extends Controller
     public function getDownloadFormulir(Request $request, $id_registrant)
     {
         $pdf = new Fpdi();
-        $fileContent = file_get_contents(asset('regist/formulir5.pdf'), 'rb');
+        $fileContent = file_get_contents(asset('regist/formulir7.pdf'), 'rb');
 
         $pdf->AddPage();
         $pdf->setSourceFile(StreamReader::createByString($fileContent));
@@ -197,9 +204,15 @@ class FrontController extends Controller
 
         $data = Registrant::where('id_registrant', $id_registrant)->first();
 
-        $v = 67;
+        // fopen(asset('') . Storage::url($data->avatar), 'rb');
+
+        $v = 98;
         $h = 62;
         $space = 6.3;
+
+        if ($data->avatar) {
+            $pdf->Image(asset('') . Storage::url($data->avatar), 157.8, 45.5, 24.5, 34.6);
+        }
 
         $pdf->SetXY($h, $v);
         $pdf->Write(0, $data->name);
@@ -241,7 +254,7 @@ class FrontController extends Controller
         /**
          * Bahasa Ingris
          */
-        $v = 179;
+        $v = 210;
         $v_space = 6;
 
         $h = 93.5;
@@ -304,7 +317,7 @@ class FrontController extends Controller
         /**
          * Tanda Tangan
          */
-        $pdf->setXY(142.4, 228);
+        $pdf->setXY(142.4, 256);
         $pdf->cell(25, 3, $data->name, 0, 1, "C");
 
         $pdf->Output('D', 'Formulir - ' . $id_registrant . '.pdf');
