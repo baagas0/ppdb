@@ -369,40 +369,65 @@
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="avatar" name="avatar">
-                                                        <label class="custom-file-label" for="avatar">Foto Diri</label>
+                                                        <label class="custom-file-label" for="avatar">Foto Diri <small>(png/jpg)</small></label>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-md-12 mb-3">
+                                                <div class="preview">
+                                                    <img src="" class="img-thumbnail" name="avatar_preview" hidden alt="">
                                                 </div>
                                             </div>
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="file_sm_1" name="file_sm_1">
-                                                        <label class="custom-file-label" for="file_sm_1">Scan Nilai Semester 1</label>
+                                                        <label class="custom-file-label" for="file_sm_1">Scan Nilai Semester 1 <small>(pdf)</small></label>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-md-12 mb-3">
+                                                <div class="preview">
+                                                    <embed src="" height="300" hidden name="file_sm_1_preview"></embed>
                                                 </div>
                                             </div>
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="file_sm_2" name="file_sm_2">
-                                                        <label class="custom-file-label" for="file_sm_2">Scan Nilai Semester 2</label>
+                                                        <label class="custom-file-label" for="file_sm_2">Scan Nilai Semester 2 <small>(pdf)</small></label>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-md-12 mb-3">
+                                                <div class="preview">
+                                                    <embed src="" height="300" hidden name="file_sm_2_preview"></embed>
                                                 </div>
                                             </div>
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="file_sm_3" name="file_sm_3">
-                                                        <label class="custom-file-label" for="file_sm_3">Scan Nilai Semester 3</label>
+                                                        <label class="custom-file-label" for="file_sm_3">Scan Nilai Semester 3 <small>(pdf)</small></label>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-md-12 mb-3">
+                                                <div class="preview">
+                                                    <embed src="" height="300" hidden name="file_sm_3_preview"></embed>
                                                 </div>
                                             </div>
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="file_piagam" name="file_piagam">
-                                                        <label class="custom-file-label" for="file_piagam">Piagam / Sertifikat (jika ada)</label>
+                                                        <label class="custom-file-label" for="file_piagam">Piagam / Sertifikat (jika ada) <small>(pdf)</small></label>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-md-12 mb-3">
+                                                <div class="preview">
+                                                    <embed src="" height="300" hidden name="file_piagam_preview"></embed>
                                                 </div>
                                             </div>
                                         </div>
@@ -516,6 +541,64 @@
                 }
             });
 
+            $('input[name="avatar"]').on('change', function(e) {
+                const file = URL.createObjectURL(e.target.files[0]);
+                if(e.target.files[0].type == 'image/png'){
+                    const image = $('img[name="avatar_preview"]');
 
+                    image.attr('src', file);
+                    image.attr('hidden', false);
+                }else {
+                    alert('Masukan Format Gambar!');
+                }
+            });
+
+            $('input[name="file_sm_1"]').on('change', function(e) {
+                const file = URL.createObjectURL(e.target.files[0]);
+                if(e.target.files[0].type == 'application/pdf'){
+                    const embed = $('embed[name="file_sm_1_preview"]');
+
+                    embed.attr('src', file);
+                    embed.attr('hidden', false);
+                }else {
+                    alert('Masukan Format File PDF!');
+                }
+            });
+
+            $('input[name="file_sm_2"]').on('change', function(e) {
+                const file = URL.createObjectURL(e.target.files[0]);
+                if(e.target.files[0].type == 'application/pdf'){
+                    const embed = $('embed[name="file_sm_2_preview"]');
+
+                    embed.attr('src', file);
+                    embed.attr('hidden', false);
+                }else {
+                    alert('Masukan Format File PDF!');
+                }
+            });
+
+            $('input[name="file_sm_3"]').on('change', function(e) {
+                const file = URL.createObjectURL(e.target.files[0]);
+                if(e.target.files[0].type == 'application/pdf'){
+                    const embed = $('embed[name="file_sm_3_preview"]');
+
+                    embed.attr('src', file);
+                    embed.attr('hidden', false);
+                }else {
+                    alert('Masukan Format File PDF!');
+                }
+            });
+
+            $('input[name="file_piagam"]').on('change', function(e) {
+                const file = URL.createObjectURL(e.target.files[0]);
+                if(e.target.files[0].type == 'application/pdf'){
+                    const embed = $('embed[name="file_piagam_preview"]');
+
+                    embed.attr('src', file);
+                    embed.attr('hidden', false);
+                }else {
+                    alert('Masukan Format File PDF!');
+                }
+            });
 		});
 	</script>

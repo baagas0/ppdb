@@ -137,11 +137,7 @@
                                                     <td class="text-dark">{{ $registrant->name }}</td>
                                                     <td class="text-dark">{{ cb($registrant->date_birth)->format('d M Y') }}</td>
                                                     <td class="text-dark">
-                                                        <form method="post" action="{{ route('..download.formulir', $registrant->id_registrant) }}">
-                                                            @csrf
-                                                            {{-- <a href="{{ route('..download.formulir') }}" class="btn btn-danger btn-sm">Download Formulir</a> --}}
-                                                            <button type="submit" class="btn btn-danger btn-sm">Download Formulir</button>
-                                                        </form>
+                                                        <a href="{{ route('..download.formulir', $registrant->id_registrant) }}" class="btn btn-danger btn-sm">Download Formulir</a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
