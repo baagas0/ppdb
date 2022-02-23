@@ -426,7 +426,7 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
                                                     <input type="file" class="custom-file-input" id="avatar"
                                                         name="avatar">
                                                     <label class="custom-file-label" for="avatar">Foto Diri
-                                                        <small>(png/jpg)</small></label>
+                                                        <small>(png/jpg/jpeg)</small></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -621,13 +621,14 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 
         $('input[name="avatar"]').on('change', function(e) {
             const file = URL.createObjectURL(e.target.files[0]);
-            if (e.target.files[0].type == 'image/png') {
+            let type = e.target.files[0].type;
+            if (type == 'image/png' || type == 'image/jpg' || type == 'image/jpeg') {
                 const image = $('img[name="avatar_preview"]');
 
                 image.attr('src', file);
                 image.attr('hidden', false);
             } else {
-                alert('Masukan Format Gambar!');
+                alert('Masukan Format Gambar PNG, JPG, atau JPEG!');
             }
         });
 
