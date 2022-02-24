@@ -64,27 +64,28 @@ class FrontController extends Controller
             return redirect()->route('..registration')->with('danger', 'Pastikan anda memilih jurusan dengan benar!');
         }
 
-        $length = 3;
+        $length = 5;
 
         $avatar = $request->file('avatar');
-        $avatar_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . $avatar->getClientOriginalName();
+        $avatar_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $avatar->getMimeType());
+        // dd($avatar_name);
         $avatar_path = Storage::putFileAs('public/images', $avatar, $avatar_name);
 
         $file_sm_1 = $request->file('file_sm_1');
-        $file_sm_1_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . $file_sm_1->getClientOriginalName();
+        $file_sm_1_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_sm_1->getMimeType());
         $file_sm_1_path = Storage::putFileAs('public/semester', $file_sm_1, $file_sm_1_name);
 
         $file_sm_2 = $request->file('file_sm_2');
-        $file_sm_2_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . $file_sm_2->getClientOriginalName();
+        $file_sm_2_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_sm_2->getMimeType());
         $file_sm_2_path = Storage::putFileAs('public/semester', $file_sm_2, $file_sm_2_name);
 
         $file_sm_3 = $request->file('file_sm_3');
-        $file_sm_3_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . $file_sm_3->getClientOriginalName();
+        $file_sm_3_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_sm_3->getMimeType());
         $file_sm_3_path = Storage::putFileAs('public/semester', $file_sm_3, $file_sm_3_name);
 
         $file_piagam = $request->file('file_piagam');
         if ($request->hasFile('file_piagam')) {
-            $file_piagam_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . $file_piagam->getClientOriginalName();
+            $file_piagam_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_piagam->getMimeType());
             $file_piagam_path = Storage::putFileAs('public/semester', $file_piagam, $file_piagam_name);
         } else {
             $file_piagam_path = null;
