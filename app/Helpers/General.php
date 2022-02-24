@@ -146,7 +146,7 @@ if (!function_exists('cb')) {
     {
         if ($date) {
             if ($format) {
-                $date = Carbon::createFromFormat($date, $format);
+                $date = Carbon::parse($date)->format($format);
             } else {
                 $date = Carbon::parse($date);
             }

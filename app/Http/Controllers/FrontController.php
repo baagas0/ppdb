@@ -204,8 +204,6 @@ class FrontController extends Controller
 
         $data = Registrant::where('id_registrant', $id_registrant)->first();
 
-        // fopen(asset('') . Storage::url($data->avatar), 'rb');
-
         $v = 98;
         $h = 62;
         $space = 6.3;
@@ -217,8 +215,9 @@ class FrontController extends Controller
         $pdf->SetXY($h, $v);
         $pdf->Write(0, $data->name);
 
+        $birthday_text = $data->place_birth . ', ' . cb($data->date_birth, 'd M Y');
         $pdf->SetXY($h, $v + ($space * 1));
-        $pdf->Write(0, $data->place_birth);
+        $pdf->Write(0, $birthday_text);
 
         $pdf->SetXY($h, $v + ($space * 2));
         $pdf->Write(0, $data->gender);
