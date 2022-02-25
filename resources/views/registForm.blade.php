@@ -76,6 +76,10 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
             border-radius: 10px 10px 0px 0px !important;
         }
 
+        .form-control {
+            border-width: 2px
+        }
+
     </style>
 </head>
 

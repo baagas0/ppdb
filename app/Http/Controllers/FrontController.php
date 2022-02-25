@@ -68,7 +68,6 @@ class FrontController extends Controller
 
         $avatar = $request->file('avatar');
         $avatar_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $avatar->getMimeType());
-        // dd($avatar_name);
         $avatar_path = Storage::putFileAs('public/images', $avatar, $avatar_name);
 
         $file_sm_1 = $request->file('file_sm_1');
@@ -195,7 +194,7 @@ class FrontController extends Controller
     public function getDownloadFormulir(Request $request, $id_registrant)
     {
         $pdf = new Fpdi();
-        $fileContent = file_get_contents(asset('regist/formulir7.pdf'), 'rb');
+        $fileContent = file_get_contents(asset('regist/formulir9.pdf'), 'rb');
 
         $pdf->AddPage();
         $pdf->setSourceFile(StreamReader::createByString($fileContent));
@@ -212,6 +211,12 @@ class FrontController extends Controller
         if ($data->avatar) {
             $pdf->Image(asset('') . Storage::url($data->avatar), 157.8, 45.5, 24.5, 34.6);
         }
+
+        /**
+         * Tanda Tangan
+         */
+        $pdf->setXY(158, $v - 14.5);
+        $pdf->cell(25, 3, $data->id_registrant, 0, 1, "C");
 
         $pdf->SetXY($h, $v);
         $pdf->Write(0, $data->name);
