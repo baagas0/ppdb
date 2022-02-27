@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>PPDB Online | {{ fset('schoolName')->title }}</title>
-    <base href="https://ppdb.mansatupati.sch.id/" />
+    <base href="{{ asset('/') }}" />
     <link rel="shortcut icon" href="{{ asset('lp/images/logo/favicon.png') }}" type="image/png">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -131,7 +131,7 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    <li class="page-scroll">
+                    {{-- <li class="page-scroll">
                         <a href="#prosedur"><i class="fa fa-random"></i> Alur</a>
                     </li>
                     <li class="page-scroll">
@@ -139,7 +139,7 @@
                     </li>
                     <li class="page-scroll">
                         <a href="#syarat"><i class="fa fa-briefcase"></i> Syarat</a>
-                    </li>
+                    </li> --}}
 
                     <li class="page-scroll">
                         <a href="{{ route('..registration') }}"><i class="fa fa-graduation-cap"></i> Daftar PPDB</a>

@@ -99,7 +99,8 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
                                 <h1 class="bold">Form Pendaftaran Jalur
                                     {{ $isRegularDate && $isUnggulanDate? 'Regular & Unggulan': ($isRegularDate? 'Regular': ($isUnggulanDate? 'Unggulan': '(belum dibuka)')) }}
                                 </h1>
-                                <h2 class="bold">{{ fSet('title')->title }} {{ date('Y') }}</h2>
+                                <h2 class="bold">{{ fSet('schoolName')->title }}
+                                    {{ date('Y') . '/' . (date('Y') + 1) }}</h2>
                                 <p>Silahkan Isi data diri anda pada form berikut ini</p>
                             </div>
                         </div>
@@ -151,31 +152,32 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <input type="text" name="region" class="form-control required"
-                                                    placeholder="Agama">
+                                                    placeholder="Agama" value="Islam" disabled>
                                                 <i class="icon-user"></i>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group input-group">
-                                                <div class="input-group-prepend">
+                                            <div class="form-group">
+                                                {{-- <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">+62</span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="Nomor Hp"
+                                                </div> --}}
+                                                <input type="text" class="form-control" placeholder="Nomor Hp Siswa"
                                                     aria-label="Username" aria-describedby="basic-addon1" name="phone">
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-md-12">
                                             <div class="form-group">
                                                 <input type="text" name="parent_name" class="form-control required"
-                                                    placeholder="Nama Orang Tua">
+                                                    placeholder="Nama Ayah">
                                                 <i class="icon-user"></i>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group input-group">
-                                                <div class="input-group-prepend">
+                                            <div class="form-group">
+                                                {{-- <div class="form-group input-group"> --}}
+                                                {{-- <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">+62</span>
-                                                </div>
+                                                </div> --}}
                                                 <input type="text" name="parent_phone" class="form-control"
                                                     placeholder="Nomor Hp Orang Tua" aria-label="Username"
                                                     aria-describedby="basic-addon1">
@@ -184,14 +186,14 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
                                         <div class="col-xl-12 col-md-12">
                                             <div class="form-group">
                                                 <input type="text" name="school_origin" class="form-control required"
-                                                    placeholder="Asal Sekolah">
+                                                    placeholder="Asal SMP/MTs">
                                                 <i class="icon-user"></i>
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-md-12">
                                             <div class="form-group">
                                                 <textarea name="adress" class="form-control notes"
-                                                    placeholder="Alamat Anda"></textarea>
+                                                    placeholder="Alamat Rumah"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -418,13 +420,35 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                                <table class="table w-auto mw-100" name="final-average">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col" class="text-center">Rata Rata Akhir</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="row">
+                                                                    <div class="col-xl-12 col-md-12 col-sm-4">
+                                                                        <div class="form-group">
+                                                                            <input type="text" name="final_average"
+                                                                                class="form-control required" disabled
+                                                                                placeholder="Rata Rata Akhir">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
 
                                     <h5 class="color-yellow" style="padding-top: 30px">Upload File</h5>
                                     <div class="row">
-                                        <div class="col-xl-12 col-md-12">
+                                        {{-- <div class="col-xl-12 col-md-12">
                                             <div class="input-group mb-3">
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="avatar"
@@ -433,7 +457,7 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
                                                         <small>(png/jpg/jpeg)</small></label>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-3">
                                             <div class="preview">
                                                 <img src="" class="img-thumbnail" name="avatar_preview" hidden alt="">
@@ -445,13 +469,15 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
                                                     <input type="file" class="custom-file-input" id="file_sm_1"
                                                         name="file_sm_1">
                                                     <label class="custom-file-label" for="file_sm_1">Scan Nilai
-                                                        Semester 1 <small>(pdf)</small></label>
+                                                        Semester 3 <small>(jpg/jpeg/pdf)</small></label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-12 col-md-12 mb-3">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 mb-3">
                                             <div class="preview">
-                                                <embed src="" height="300" hidden name="file_sm_1_preview"></embed>
+                                                <embed src="" height="300" hidden name="file_sm_1_preview_pdf"></embed>
+                                                <img src="" class="img-thumbnail" name="file_sm_1_preview_img" hidden
+                                                    alt="">
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-md-12">
@@ -460,13 +486,15 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
                                                     <input type="file" class="custom-file-input" id="file_sm_2"
                                                         name="file_sm_2">
                                                     <label class="custom-file-label" for="file_sm_2">Scan Nilai
-                                                        Semester 2 <small>(pdf)</small></label>
+                                                        Semester 4 <small>(jpg/jpeg/pdf)</small></label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-12 col-md-12 mb-3">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 mb-3">
                                             <div class="preview">
-                                                <embed src="" height="300" hidden name="file_sm_2_preview"></embed>
+                                                <embed src="" height="300" hidden name="file_sm_2_preview_pdf"></embed>
+                                                <img src="" class="img-thumbnail" name="file_sm_2_preview_img" hidden
+                                                    alt="">
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-md-12">
@@ -475,13 +503,15 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
                                                     <input type="file" class="custom-file-input" id="file_sm_3"
                                                         name="file_sm_3">
                                                     <label class="custom-file-label" for="file_sm_3">Scan Nilai
-                                                        Semester 3 <small>(pdf)</small></label>
+                                                        Semester 5 <small>(jpg/jpeg/pdf)</small></label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-12 col-md-12 mb-3">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 mb-3">
                                             <div class="preview">
-                                                <embed src="" height="300" hidden name="file_sm_3_preview"></embed>
+                                                <embed src="" height="300" hidden name="file_sm_3_preview_pdf"></embed>
+                                                <img src="" class="img-thumbnail" name="file_sm_3_preview_png" hidden
+                                                    alt="">
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-md-12">
@@ -490,13 +520,16 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
                                                     <input type="file" class="custom-file-input" id="file_piagam"
                                                         name="file_piagam">
                                                     <label class="custom-file-label" for="file_piagam">Piagam /
-                                                        Sertifikat (jika ada) <small>(pdf)</small></label>
+                                                        Sertifikat (jika ada) <small>(jpg/jpeg/pdf)</small></label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-12 col-md-12 mb-3">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 mb-3">
                                             <div class="preview">
-                                                <embed src="" height="300" hidden name="file_piagam_preview"></embed>
+                                                <embed src="" height="300" hidden
+                                                    name="file_piagam_preview_pdf"></embed>
+                                                <img src="" class="img-thumbnail" name="file_piagam_preview_img"
+                                                    hidden alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -514,7 +547,8 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
                                     </div>
 
                                     <div id="bottom-wizard">
-                                        <button type="submit" name="process" class="submit">Submit</button>
+                                        <button name="process" class="submit"
+                                            style="display: block!important">Submit</button>
                                     </div>
                                 </form>
                                 <!-- </div> -->
@@ -638,23 +672,43 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 
         $('input[name="file_sm_1"]').on('change', function(e) {
             const file = URL.createObjectURL(e.target.files[0]);
-            if (e.target.files[0].type == 'application/pdf') {
-                const embed = $('embed[name="file_sm_1_preview"]');
+            let type = e.target.files[0].type;
+            const embed = $('embed[name="file_sm_1_preview_pdf"]');
+            const img = $('img[name="file_sm_1_preview_img"]');
+
+            if (type == 'application/pdf') {
 
                 embed.attr('src', file);
                 embed.attr('hidden', false);
+                img.attr('hidden', true);
+            } else if (type == 'image/jpg' || type == 'image/jpeg') {
+
+                img.attr('src', file);
+                img.attr('hidden', false);
+                embed.attr('hidden', true);
             } else {
+                embed.attr('hidden', true);
+                img.attr('hidden', true);
                 alert('Masukan Format File PDF!');
             }
         });
 
         $('input[name="file_sm_2"]').on('change', function(e) {
             const file = URL.createObjectURL(e.target.files[0]);
-            if (e.target.files[0].type == 'application/pdf') {
-                const embed = $('embed[name="file_sm_2_preview"]');
+            let type = e.target.files[0].type;
+            const embed = $('embed[name="file_sm_2_preview_pdf"]');
+            const img = $('img[name="file_sm_2_preview_img"]');
+
+            if (type == 'application/pdf') {
 
                 embed.attr('src', file);
                 embed.attr('hidden', false);
+                img.attr('hidden', true);
+            } else if (type == 'image/jpg' || type == 'image/jpeg') {
+
+                img.attr('src', file);
+                img.attr('hidden', false);
+                embed.attr('hidden', true);
             } else {
                 alert('Masukan Format File PDF!');
             }
@@ -662,11 +716,20 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 
         $('input[name="file_sm_3"]').on('change', function(e) {
             const file = URL.createObjectURL(e.target.files[0]);
-            if (e.target.files[0].type == 'application/pdf') {
-                const embed = $('embed[name="file_sm_3_preview"]');
+            let type = e.target.files[0].type;
+            const embed = $('embed[name="file_sm_3_preview_pdf"]');
+            const img = $('img[name="file_sm_3_preview_img"]');
+
+            if (type == 'application/pdf') {
 
                 embed.attr('src', file);
                 embed.attr('hidden', false);
+                img.attr('hidden', true);
+            } else if (type == 'image/jpg' || type == 'image/jpeg') {
+
+                img.attr('src', file);
+                img.attr('hidden', false);
+                embed.attr('hidden', true);
             } else {
                 alert('Masukan Format File PDF!');
             }
@@ -674,11 +737,20 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 
         $('input[name="file_piagam"]').on('change', function(e) {
             const file = URL.createObjectURL(e.target.files[0]);
-            if (e.target.files[0].type == 'application/pdf') {
-                const embed = $('embed[name="file_piagam_preview"]');
+            let type = e.target.files[0].type;
+            const embed = $('embed[name="file_piagam_preview_pdf"]');
+            const img = $('img[name="file_piagam_preview_img"]');
+
+            if (type == 'application/pdf') {
 
                 embed.attr('src', file);
                 embed.attr('hidden', false);
+                img.attr('hidden', true);
+            } else if (type == 'image/jpg' || type == 'image/jpeg') {
+
+                img.attr('src', file);
+                img.attr('hidden', false);
+                embed.attr('hidden', true);
             } else {
                 alert('Masukan Format File PDF!');
             }

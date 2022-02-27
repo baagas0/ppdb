@@ -66,24 +66,39 @@ class FrontController extends Controller
 
         $length = 5;
 
-        $avatar = $request->file('avatar');
-        $avatar_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $avatar->getMimeType());
-        $avatar_path = Storage::putFileAs('public/images', $avatar, $avatar_name);
+        $avatar_path = '';
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatar_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $avatar->getMimeType());
+            $avatar_path = Storage::putFileAs('public/images', $avatar, $avatar_name);
+        }
 
-        $file_sm_1 = $request->file('file_sm_1');
-        $file_sm_1_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_sm_1->getMimeType());
-        $file_sm_1_path = Storage::putFileAs('public/semester', $file_sm_1, $file_sm_1_name);
+        if ($request->hasFile('file_sm_1')) {
+            $file_sm_1 = $request->file('file_sm_1');
+            $file_sm_1_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_sm_1->getMimeType());
+            $file_sm_1_path = Storage::putFileAs('public/semester', $file_sm_1, $file_sm_1_name);
+        } else {
+            return redirect()->route('..registration')->with('danger', 'Masukan file raport semester 3!');
+        }
 
-        $file_sm_2 = $request->file('file_sm_2');
-        $file_sm_2_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_sm_2->getMimeType());
-        $file_sm_2_path = Storage::putFileAs('public/semester', $file_sm_2, $file_sm_2_name);
+        if ($request->hasFile('file_sm_2')) {
+            $file_sm_2 = $request->file('file_sm_2');
+            $file_sm_2_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_sm_2->getMimeType());
+            $file_sm_2_path = Storage::putFileAs('public/semester', $file_sm_2, $file_sm_2_name);
+        } else {
+            return redirect()->route('..registration')->with('danger', 'Masukan file raport semester 4!');
+        }
 
-        $file_sm_3 = $request->file('file_sm_3');
-        $file_sm_3_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_sm_3->getMimeType());
-        $file_sm_3_path = Storage::putFileAs('public/semester', $file_sm_3, $file_sm_3_name);
+        if ($request->hasFile('file_sm_3')) {
+            $file_sm_3 = $request->file('file_sm_3');
+            $file_sm_3_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_sm_3->getMimeType());
+            $file_sm_3_path = Storage::putFileAs('public/semester', $file_sm_3, $file_sm_3_name);
+        } else {
+            return redirect()->route('..registration')->with('danger', 'Masukan file raport semester 5!');
+        }
 
-        $file_piagam = $request->file('file_piagam');
         if ($request->hasFile('file_piagam')) {
+            $file_piagam = $request->file('file_piagam');
             $file_piagam_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_piagam->getMimeType());
             $file_piagam_path = Storage::putFileAs('public/semester', $file_piagam, $file_piagam_name);
         } else {
@@ -96,14 +111,16 @@ class FrontController extends Controller
             'place_birth'   => $request->place_birth,
             'date_birth'    => Carbon::parse($request->date_birth)->format('Y-m-d'),
             'gender'        => $request->gender,
-            'region'        => $request->region,
+            'region'        => 'Islam',
             'phone'         => '62' . $request->phone,
             'parent_name'   => $request->parent_name,
             'parent_phone'  => '62' . $request->parent_phone,
             'school_origin' => $request->school_origin,
             'adress'        => $request->adress,
+
             'majors'        => $request->majors,
             'lane'          => $request->lane,
+
             'bing_sm3'      => $request->bing_sm3,
             'bing_sm4'      => $request->bing_sm4,
             'bing_sm5'      => $request->bing_sm5,
@@ -166,10 +183,18 @@ class FrontController extends Controller
         //     ]);
         // }
 
-        return redirect()->route('..registration')->with([
-            'success' => 'Anda Berhasil mendaftar PPDB di Man 2 Pati lewat jalur ' . $request->lane,
-            'custom'  => 'Download formulir pendaftaran anda di <a href="' . route('..download.formulir', $registrant->id_registrant) . '">Klik Sini</a>'
+        // return redirect()->route('..registration')->with([
+        //     'success' => 'Anda Berhasil mendaftar PPDB di Man 2 Pati lewat jalur ' . $request->lane,
+        //     'custom'  => 'Download formulir pendaftaran anda di <a href="' . route('..download.formulir', $registrant->id_registrant) . '">Klik Sini</a>'
+        // ]);
+        return redirect()->route('..thanks')->with([
+            'id_registration'   =>  $registrant->id_registrant
         ]);
+    }
+
+    public function getThanks()
+    {
+        return view('thanks');
     }
 
     public function getCetakFormulir(Request $request)

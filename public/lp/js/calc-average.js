@@ -164,7 +164,7 @@ function average_ipa() {
 function average_majors() {
     let majors = $('select[name="majors"]').val();
     let lane = $('select[name="lane"]').val();
-    // console.debug(majors);
+
     let average_bing = parseInt($('input[name="average_bing"]').val());
     let average_mat = parseInt($('input[name="average_mat"]').val());
     let average_ips = parseInt($('input[name="average_ips"]').val());
@@ -175,28 +175,75 @@ function average_majors() {
     average_ips = isNaN(average_ips) ? 0 : average_ips;
     average_ipa = isNaN(average_ipa) ? 0 : average_ipa;
 
-    if(lane == 'Unggulan'){
-        if(average_bing != 0 && average_mat != 0 && average_ips != 0 && average_ipa != 0) {
+    let status = false;
+    if(majors == 'IPS'){
+        status = (average_bing != 0 && average_mat != 0 && average_ips != 0) ? true : false;
+    }else if(majors == 'IPA'){
+        status = (average_bing != 0 && average_mat != 0 && average_ipa != 0) ? true : false;
+    }
+
+    // if(lane == 'Unggulan'){
+        if(status) {
+
             let total = average_bing + average_mat;
             let majors_ips = (total + average_ips) / 3;
             let majors_ipa = (total + average_ipa) / 3;
 
             if(majors == 'IPS' || majors == 'IPA'){
-                let val_calc = majors == 'IPS' ? majors_ips : majors_ipa;
+                let val_calc = (majors == 'IPS') ? majors_ips : majors_ipa;
+                $('input[name="final_average"]').val(val_calc)
 
                 if(val_calc < 75){
+                    submited_form('non_active');
+
                     window.scrollTo(0, 0);
-                    $('.alert-content').text(`Nilai anda ${majors == 'IPS' ? majors_ips : majors_ipa} tidak memenuhi kriteria untuk ikut kelas unggulan.`);
+                    $('.alert-content').text(`Nilai anda ${majors == 'IPS' ? majors_ips : majors_ipa} tidak memenuhi kriteria dengan minimal 75.`);
                     $('.alert').addClass('show');
+                }else {
+                    submited_form('active');
+
                 }
             }else {
                 window.scrollTo(0, 0);
                 $('.alert-content').text(`Jurusan anda tidak dikenali.`);
                 $('.alert').addClass('show');
             }
-
-            console.debug('majors_ips', majors_ips);
-            console.debug('majors_ipa', majors_ipa);
         }
-    }
+    // }
 };
+
+/**
+ * Disable / Enable submited form
+ */
+
+function submited_form(status){
+    let button_submit = $('button[name="process"]');
+    let avatar = $('input[name="avatar"]');
+    let file_sm_1 = $('input[name="file_sm_1"]');
+    let file_sm_2 = $('input[name="file_sm_2"]');
+    let file_sm_3 = $('input[name="file_sm_3"]');
+    let file_piagam = $('input[name="file_piagam"]');
+
+    if(status == 'active'){
+
+        button_submit.css('background-color', '#2abfaa');
+        button_submit.attr('disabled', false);
+
+        avatar.attr('disabled', false);
+        file_sm_1.attr('disabled', false);
+        file_sm_2.attr('disabled', false);
+        file_sm_3.attr('disabled', false);
+        file_piagam.attr('disabled', false);
+
+    }else if(status == 'non_active'){
+
+        button_submit.css('background-color', '#85cec4');
+        button_submit.attr('disabled', true);
+
+        avatar.attr('disabled', true);
+        file_sm_1.attr('disabled', true);
+        file_sm_2.attr('disabled', true);
+        file_sm_3.attr('disabled', true);
+        file_piagam.attr('disabled', true);
+    }
+}
