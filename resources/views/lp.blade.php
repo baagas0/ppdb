@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+@php
+$regularRegistrationDate = fSet('regular-registration-date')->content;
+$regularDate = explode('/', $regularRegistrationDate);
+
+$unggulanRegistrationDate = fSet('unggulan-registration-date')->content;
+$unggulanDate = explode('/', $unggulanRegistrationDate);
+@endphp
 
 <head>
     <meta charset="utf-8">
@@ -168,7 +175,8 @@
                             SELAMAT DATANG DI PPDB ONLINE <br> {{ fset('schoolName')->title }} </span>
                         <br>
                         <span>
-                            <a href="pendaftaran" class="btn btn-warning" style="margin: 5px; border-radius: 6px;">
+                            <a href="{{ route('..registration') }}" class="btn btn-warning"
+                                style="margin: 5px; border-radius: 6px;">
                                 <i class="fa fa-list faa-pulse"></i> &nbsp;
                                 <b>KLIK DAFTAR</b>
                             </a>
@@ -247,15 +255,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Alur PPDB Online</h2>
+                    <h2>Waktu Pendaftaran</h2>
                     <hr style="width: 150px;">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12" style="margin-top:-10px;">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
-                        <img class="img-responsive" src="img/alur.png" alt="">
+            <div class="row" style="margin-top: 15px">
+                <div class="col-lg-6" style="margin-top:-10px;">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h5>Jalur Unggulan</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h3>
+                                {{ cb($unggulanDate[0])->format('d M Y') }}
+                                <span style="text-transform: full-size-kana">s/d</span>
+                                {{ cb($unggulanDate[1])->format('d M Y') }}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" style="margin-top:-10px;">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h5>Jalur Regular</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h3>
+                                {{ cb($regularDate[0])->format('d M Y') }}
+                                <span style="text-transform: full-size-kana">s/d</span>
+                                {{ cb($regularDate[1])->format('d M Y') }}
+                            </h3>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -302,14 +332,45 @@
                 <div class="col-lg-12 text-center">
                     <h2>Syarat Pendaftaran</h2>
                     <hr style="width: 150px;">
-
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12" style="margin-top:-10px;">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
-                        <img class="img-responsive" src="img/syarat.png" alt="">
+                <div class="col-lg-6" style="margin-top:-10px;">
+                    <div class="panel panel-default ">
+                        <div class="panel-heading text-center">
+                            <h5>Jalur Unggulan</h5>
+                        </div>
+                        <div class="panel-body">
+                            <p>1. Usia maksimal 21 tahun pada 1 Juli {{ Date('Y') }}</p>
+                            <p>2. Mengisi link di <a href="http://ppdb.manpati2.sch.id">http://ppdb.manpati2.sch.id</a>
+                            </p>
+                            <p>3. Mengunggah (scan) file raport</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Semester 3</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Semester 4</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Semester 5</p>
+                            <p>4. Ketentuan nilai raport</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Nilai rata rata min 75 secara akumulatif</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- (Matematika, B.Ingris, IPA) Program IPA</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- (Matematika, B.Ingris, IPS) Program IPS</p>
+                            <p>5. Mengunggah (scan) file piagam/prestasi <small>(bagi yang memiliki)</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" style="margin-top:-10px;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            <h5>Jalur Regular</h5>
+                        </div>
+                        <div class="panel-body">
+                            <p>1. Usia maksimal 21 tahun pada 1 Juli {{ Date('Y') }}</p>
+                            <p>2. Mengisi link di <a href="http://ppdb.manpati2.sch.id">http://ppdb.manpati2.sch.id</a>
+                            </p>
+                            <p>3. Mengunggah (scan) file raport</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Semester 3</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Semester 4</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Semester 5</p>
+                            <p>4. Mengunggah (scan) file piagam/prestasi <small>(bagi yang memiliki)</small></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -365,14 +426,17 @@
         crossorigin="anonymous"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
 
 
     <script src="https://use.fontawesome.com/0a33b3c123.js"></script>
 
 
     <!-- Theme JavaScript -->
-    <script src="assets/js/freelancer.min.js"></script>
+
+    <script src="{{ asset('lp/js/freelancer.min.js') }}"></script>
 </body>
 
 </html>

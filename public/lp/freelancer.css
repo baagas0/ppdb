@@ -91,7 +91,7 @@ hr.star-primary:after {
 header {
     margin-top: 6%;
     text-align: center;
-    background-image: url("/lp/images/sliders/bg-header-blue.png");
+    background-image: url("https://manpati2.sch.id/theme/images/slider-3.jpg");
     background-color: #275555ff;
     background-repeat: no-repeat;
     background-size: cover;
@@ -138,7 +138,7 @@ header .intro-text .skills {
 
 .navbar-custom {
     /* opacity:0.9; */
-    background: #275555ff;
+    background: #32825F;
     font-family: "Abel-Regular";
     text-transform: uppercase;
     font-weight: 700;
@@ -239,7 +239,7 @@ section h2 {
 }
 
 section.success {
-    background: #2f6868;
+    background: #519259;
     color: white;
 }
 
@@ -385,7 +385,7 @@ footer .footer-col {
 
 footer .footer-below {
     padding: 10px 0;
-    background-color: #275555ff;
+    background-color: #32825F;
 }
 
 .btn-outline {

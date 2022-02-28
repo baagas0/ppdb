@@ -510,7 +510,7 @@ $isUnggulanDate = cb()->between($unggulanDate[0], $unggulanDate[1]);
                                         <div class="col-xl-12 col-md-12 col-sm-12 mb-3">
                                             <div class="preview">
                                                 <embed src="" height="300" hidden name="file_sm_3_preview_pdf"></embed>
-                                                <img src="" class="img-thumbnail" name="file_sm_3_preview_png" hidden
+                                                <img src="" class="img-thumbnail" name="file_sm_3_preview_img" hidden
                                                     alt="">
                                             </div>
                                         </div>

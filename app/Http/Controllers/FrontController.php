@@ -75,15 +75,20 @@ class FrontController extends Controller
 
         if ($request->hasFile('file_sm_1')) {
             $file_sm_1 = $request->file('file_sm_1');
-            $file_sm_1_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_sm_1->getMimeType());
+            $file_sm_1_ex = str_replace('image/', '', $file_sm_1->getMimeType());
+            $file_sm_1_ex = str_replace('application/', '', $file_sm_1_ex);
+            $file_sm_1_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . $file_sm_1_ex;
             $file_sm_1_path = Storage::putFileAs('public/semester', $file_sm_1, $file_sm_1_name);
+            // dd($file_sm_1_path);
         } else {
             return redirect()->route('..registration')->with('danger', 'Masukan file raport semester 3!');
         }
 
         if ($request->hasFile('file_sm_2')) {
             $file_sm_2 = $request->file('file_sm_2');
-            $file_sm_2_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_sm_2->getMimeType());
+            $file_sm_2_ex = str_replace('image/', '', $file_sm_2->getMimeType());
+            $file_sm_2_ex = str_replace('application/', '', $file_sm_2_ex);
+            $file_sm_2_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . $file_sm_2_ex;
             $file_sm_2_path = Storage::putFileAs('public/semester', $file_sm_2, $file_sm_2_name);
         } else {
             return redirect()->route('..registration')->with('danger', 'Masukan file raport semester 4!');
@@ -91,7 +96,9 @@ class FrontController extends Controller
 
         if ($request->hasFile('file_sm_3')) {
             $file_sm_3 = $request->file('file_sm_3');
-            $file_sm_3_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . str_replace('image/', '', $file_sm_3->getMimeType());
+            $file_sm_3_ex = str_replace('image/', '', $file_sm_3->getMimeType());
+            $file_sm_3_ex = str_replace('application/', '', $file_sm_3_ex);
+            $file_sm_3_name =  substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, $length) . time() . '.' . $file_sm_3_ex;
             $file_sm_3_path = Storage::putFileAs('public/semester', $file_sm_3, $file_sm_3_name);
         } else {
             return redirect()->route('..registration')->with('danger', 'Masukan file raport semester 5!');

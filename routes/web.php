@@ -21,16 +21,30 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function() 
-{
-	Route::get('/', function () {
-		return redirect()->route('admin.dashboard');
-	});
-	
-	routeController('dashboard', 'Admin\DashboardController');
-	routeController('registrant', 'Admin\RegistrantController');
-	routeController('setting', 'Admin\SettingController');
-	routeController('slider', 'Admin\SliderController');
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+    return 'success';
+});
+
+Route::get('/migrate-fresh', function () {
+    Artisan::call('migrate:fresh');
+    return 'success';
+});
+
+Route::get('/db-seed', function () {
+    Artisan::call('db:seed');
+    return 'success';
+});
+
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/', function () {
+        return redirect()->route('admin.dashboard');
+    });
+
+    routeController('dashboard', 'Admin\DashboardController');
+    routeController('registrant', 'Admin\RegistrantController');
+    routeController('setting', 'Admin\SettingController');
+    routeController('slider', 'Admin\SliderController');
 });
 
 routeController('/', 'FrontController');
