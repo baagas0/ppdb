@@ -389,8 +389,7 @@ $unggulanDate = explode('/', $unggulanRegistrationDate);
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
                         <h4 align="center">PPDB Online &copy;
-                            {{ fset('schoolName')->title }}<br>{{ fset('adress')->title }}
-                            Km. 3 Pati</h4>
+                            {{ fset('schoolName')->title }}<br>{{ fset('adress')->title }}</h4>
                         <p align="center" style="font-size: 14px;">
                             <span><b><i class="fa fa-phone-square">&nbsp;</i>
                                     {{ fset('phone')->title }}</b></span><br>

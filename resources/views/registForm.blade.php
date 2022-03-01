@@ -581,6 +581,13 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
     $(document).ready(function() {
         let unggulan_lesson_requirement = '';
 
+        $('#date_birth').on('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        });
+
         $('#mc-btn__ok').on('click', function() {
             var date_birth = $('#date_birth').val();
 
