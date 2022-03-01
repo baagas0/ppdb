@@ -29,7 +29,29 @@ $unggulanDate = explode('/', $unggulanRegistrationDate);
     <!-- Theme CSS -->
     <link href="{{ asset('lp/freelancer.css') }}" rel="stylesheet">
     <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     {{-- <link href="{{ asset('lp/font-awesome.min.css') }}" rel="stylesheet" type="text/css"> --}}
+    <style>
+        .float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+
+        .my-float {
+            margin-top: 16px;
+        }
+
+    </style>
 </head>
 {{-- <style>
     table {
@@ -283,7 +305,7 @@ $unggulanDate = explode('/', $unggulanRegistrationDate);
                             <h3>
                                 {{ cb($regularDate[0])->format('d M Y') }}
                                 <span style="text-transform: full-size-kana">s/d</span>
-                                {{ cb($regularDate[1])->format('d M Y') }}
+                                Kuota Terpenuhi
                             </h3>
                         </div>
                     </div>
@@ -394,7 +416,7 @@ $unggulanDate = explode('/', $unggulanRegistrationDate);
                             <span><b><i class="fa fa-phone-square">&nbsp;</i>
                                     {{ fset('phone')->title }}</b></span><br>
                             <span><b><i class="fa fa-envelope">&nbsp;</i> man2pati@yahoo.com</b></span><br>
-                            <span><b><i class="fa fa-globe">&nbsp;</i> https://man2pati.sch.id</b></span>
+                            <span><b><i class="fa fa-globe">&nbsp;</i> https://manpati2.sch.id</b></span>
                         </p>
                     </div>
                 </div>
@@ -412,6 +434,12 @@ $unggulanDate = explode('/', $unggulanRegistrationDate);
             </div>
         </div>
     </footer>
+
+
+    <a href="https://api.whatsapp.com/send?phone={{ fset('mobile_phone')->content }}&text=" class="float"
+        target="_blank">
+        <i class="fa fa-whatsapp my-float"></i>
+    </a>
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">

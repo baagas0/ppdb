@@ -208,6 +208,12 @@ class SettingSeeder extends Seeder
             'file'         => '',
         ]);
         Setting::create([
+            'slug'         => 'mobile_phone',
+            'title'     => '',
+            'content'     => '6289506373551',
+            'file'         => '',
+        ]);
+        Setting::create([
             'slug'         => 'brochure',
             'title'     => '',
             'content'     => '',

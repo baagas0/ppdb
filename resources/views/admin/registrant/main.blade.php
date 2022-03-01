@@ -60,7 +60,8 @@
                                                         <i class="ti-pencil-alt"></i> Edit
                                                     </a>
 
-                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                    <a class="dropdown-item bg-danger"
+                                                        href="{{ route('admin.registrant.delete', $item->id) }}">
                                                         <i class="ti-trash"></i> Delete
                                                     </a>
                                                 </div>

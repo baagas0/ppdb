@@ -42,6 +42,12 @@ class RegistrantController extends Controller
         return redirect()->route('admin.registrant.detail', $id)->with(Alert('success', 'Update'));
     }
 
+    public function getDelete($id)
+    {
+        Registrant::findOrFail($id)->delete();
+        return redirect()->route('admin.registrant');
+    }
+
     public function getCard($id)
     {
         $data['data'] = Registrant::findOrFail($id);
