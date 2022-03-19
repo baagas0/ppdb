@@ -49,6 +49,7 @@ class CreateRegistrantsTable extends Migration
             $table->string('file_sm_2');
             $table->string('file_sm_3');
             $table->string('file_piagam')->nullable();
+            $table->date('re_register')->nullable();
             $table->timestamps();
         });
     }

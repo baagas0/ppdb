@@ -42,6 +42,7 @@ class Registrant extends Model
         'file_sm_2',
         'file_sm_3',
         'file_piagam',
+        're_register',
     ];
 
 
@@ -56,7 +57,7 @@ class Registrant extends Model
             //     $model->avatar = 'adm/images/female.png';
             // }
 
-            $model->id_registrant = IdGenerator::generate(['table' => 'registrants', 'field' => 'id_registrant', 'length' => 10, 'prefix' => 'REG-' . date('Y')]);
+            $model->id_registrant = IdGenerator::generate(['table' => 'registrants', 'field' => 'id_registrant', 'length' => 12, 'prefix' => 'REG-' . date('Y')]);
         });
     }
 

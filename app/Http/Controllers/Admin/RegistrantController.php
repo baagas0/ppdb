@@ -69,4 +69,16 @@ class RegistrantController extends Controller
         }
         return Excel::download(new RegistrantsExport($lane), $name);
     }
+
+    public function getUpdateReRegister($id){
+        $data = Registrant::findOrFail($id);
+        if($data->re_register){
+            $data->re_register = null;
+        }else {
+            $data->re_register = cb(null, 'Y-m-d');
+        }
+
+        $data->update();
+        return redirect()->route('admin.registrant');
+    }
 }

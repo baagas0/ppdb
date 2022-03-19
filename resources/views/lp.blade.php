@@ -171,6 +171,11 @@ $unggulanDate = explode('/', $unggulanRegistrationDate);
                     </li> --}}
 
                     <li class="page-scroll">
+                        <a href="https://chat.whatsapp.com/CY3ywviLNswBw46VhRd4Hh"><i class="fa fa-whatsapp"></i> Grup
+                            WA</a>
+                    </li>
+
+                    <li class="page-scroll">
                         <a href="{{ route('..registration') }}"><i class="fa fa-graduation-cap"></i> Daftar PPDB</a>
                     </li>
 
@@ -335,11 +340,15 @@ $unggulanDate = explode('/', $unggulanRegistrationDate);
                     <p>Pengisian form PPDB Online mohon diperhatikan data yang dibutuhkan yang nantinya akan dipakai
                         dalam proses PPDB. Setelah proses pengisian form PPDB secara online berhasil dilakukan, calon
                         siswa akan mendapat bukti daftar dengan nomor pendaftaran dan harus disimpan yang akan digunakan
-                        untuk proses selanjutnya.</p>
+                        untuk proses selanjutnya. <b>Jangan lupa setelah melakukan pendaftaran join ke group WA ppdb
+                            dibawah
+                            ini.</b>
+                    </p>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center page-scroll">
-                    <a href="{{ route('..registration') }}" class="btn btn-warning" style="border-radius: 5px;">
-                        <i class="fa fa-home "></i> PPDB ONLINE
+                    <a href="https://chat.whatsapp.com/CY3ywviLNswBw46VhRd4Hh" class="btn btn-warning"
+                        style="border-radius: 5px;">
+                        <i class="fa fa-home "></i> Join Grup WA
                     </a> &nbsp;&nbsp;
 
                 </div>

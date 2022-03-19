@@ -26,6 +26,7 @@
                                 <tr>
                                     <th>Reg ID</th>
                                     <th>Action</th>
+                                    <th>Daftar Ulang</th>
                                     <th>Name</th>
                                     <th>Kelas</th>
                                     <th>Gender</th>
@@ -60,12 +61,24 @@
                                                         <i class="ti-pencil-alt"></i> Edit
                                                     </a>
 
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('admin.registrant.update.re.register', $item->id) }}">
+                                                        <i class="ti-pencil-alt"></i> {{ $item->re_register ? 'Cancel' : '' }} Daftar Ulang
+                                                    </a>
+
                                                     <a class="dropdown-item bg-danger"
                                                         href="{{ route('admin.registrant.delete', $item->id) }}">
                                                         <i class="ti-trash"></i> Delete
                                                     </a>
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td>
+                                            @if ($item->re_register)
+                                            <span class="badge badge-primary">{{cb($item->re_register, 'd M Y')}}</span>
+                                            @else
+                                            <span class="badge badge-warning">Belom Daftar Ulang</span>
+                                            @endif
                                         </td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->lane }}</td>
